@@ -28,7 +28,7 @@ import javax.swing.WindowConstants;
  *
  * @author diego
  */
-public class BaselinerasAPP extends JFrame {
+public class BaselinerasAPP extends JFrame implements ActionListener{
 
     //private JDesktopPane desktopPane;
     /**
@@ -40,8 +40,10 @@ public class BaselinerasAPP extends JFrame {
     private JDesktopPane dp;
     private JLabel fondo;
     private JMenuBar menuBar;
-    private JMenu menu, submenu;
+    private JMenu menu;
     private JMenuItem menuItem;
+    private LoggingFrame log=null;
+   
 
     public static void main(String[] args) {
         new BaselinerasAPP();
@@ -92,16 +94,11 @@ public class BaselinerasAPP extends JFrame {
         menuBar.add(menu);
 
 //añadimos los items
-        menuItem = new JMenuItem("new Conection");
+        menuItem = new JMenuItem("Direct Conection");
         menuItem.getAccessibleContext().setAccessibleDescription(
                 "This doesn't really do anything");
-        menuItem.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("...");
-            }
-            
-        });
+        
+        menuItem.addActionListener(this);
         menu.add(menuItem);
         
         
@@ -125,9 +122,11 @@ public class BaselinerasAPP extends JFrame {
         internal.setClosable(true);
         //visualizamos
         internal.setVisible(true);
+       
 
         //añado el saludo
         dp.add(internal);
+        internal.moveToFront();
     }
 
     private void escaleBackground() {
@@ -161,6 +160,15 @@ public class BaselinerasAPP extends JFrame {
             }
 
         });
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(log==null){
+           log=new LoggingFrame(this); //es necesario poder volver a poner log a null cuando cierras el principal
+           
+        }
+        
     }
 
 }
