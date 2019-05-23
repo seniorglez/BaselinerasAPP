@@ -105,7 +105,9 @@ public class LoggingFrame extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         this.dad.setUser(this.cajaTexto.getText());
         this.dad.setPwd(String.valueOf(this.passb.getPassword()));
+        this.dad.connectToOrcl();
         this.dad.quitLogging();
+        
         this.dispose();
     }
 
