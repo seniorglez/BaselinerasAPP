@@ -5,9 +5,12 @@
  */
 package baselinerasapp;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -30,6 +33,7 @@ public class LoggingFrame extends JFrame implements ActionListener{
     private JPasswordField passb;
     private BaselinerasAPP dad;
     private JButton summit;
+    private int gap=20;
 
     public LoggingFrame(BaselinerasAPP p) {
         dad=p;//guardamos la referencia a la ventana padre
@@ -51,13 +55,21 @@ public class LoggingFrame extends JFrame implements ActionListener{
         panBox.add(panelSuperior);
         panBox.add(panelInferior);
         panBox.add(panelBoton);
+        panBox.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
+        this.getContentPane().setLayout(new BorderLayout(gap,gap));//para poner un marco
+        this.getContentPane().add(new JLabel() ,BorderLayout.NORTH);
+        this.getContentPane().add(new JLabel() ,BorderLayout.LINE_START);
+        this.getContentPane().add(new JLabel() ,BorderLayout.LINE_END);
+        this.getContentPane().add(new JLabel() ,BorderLayout.SOUTH);
+        this.getContentPane().add(panBox, BorderLayout.CENTER);
         
-        this.getContentPane().add(panBox);
-        this.setSize(new Dimension(300, 125));
+        
+        
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         this.setResizable(false);
+        this.pack();
 
     }
 
