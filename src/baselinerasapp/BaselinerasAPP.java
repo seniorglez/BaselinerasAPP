@@ -43,8 +43,21 @@ public class BaselinerasAPP extends JFrame implements ActionListener{
     private JMenu menu;
     private JMenuItem menuItem;
     private LoggingFrame log=null;
-   
+   //conexion
+    private String user;
+    private String pwd;
 
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
+    }
+    
+    public void quitLogging(){
+        this.log=null;
+    }
     public static void main(String[] args) {
         new BaselinerasAPP();
     }

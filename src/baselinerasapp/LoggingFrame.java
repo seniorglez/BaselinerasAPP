@@ -34,6 +34,7 @@ public class LoggingFrame extends JFrame implements ActionListener{
     private BaselinerasAPP dad;
     private JButton summit;
     private int gap=20;
+    private Dimension maxDimText=new Dimension(90,20);
 
     public LoggingFrame(BaselinerasAPP p) {
         dad=p;//guardamos la referencia a la ventana padre
@@ -47,6 +48,7 @@ public class LoggingFrame extends JFrame implements ActionListener{
 
         panBox = new JPanel();
         panBox.setLayout(new BoxLayout(panBox, BoxLayout.Y_AXIS));
+        panBox.setSize(new Dimension(400,300));
         etiqueta1 = new JLabel("Introduce tus credenciales");
         construyePanelSuperior();
         construyePanelInferior();
@@ -75,29 +77,36 @@ public class LoggingFrame extends JFrame implements ActionListener{
 
     public void construyePanelSuperior() {
         panelSuperior = new JPanel();
-        etiqueta2 = new JLabel("Usuario           ");
+        etiqueta2 = new JLabel(" Usuario");
         etiqueta2.getSize(new Dimension(100,20));
         cajaTexto = new JTextField(10);
+        cajaTexto.setMaximumSize(maxDimText);
         panelSuperior.setLayout(new BoxLayout(panelSuperior, BoxLayout.X_AXIS));
         panelSuperior.add(etiqueta2);
         panelSuperior.add(Box.createHorizontalGlue());
         panelSuperior.add(cajaTexto);
+
     }
 
     public void construyePanelInferior() {
         panelInferior = new JPanel();
-        etiqueta3 = new JLabel("contraseña    ");
+        etiqueta3 = new JLabel(" Contraseña");
         etiqueta3.getSize(new Dimension(100,20));
         passb = new JPasswordField(10);
+        passb.setMaximumSize(maxDimText);
         panelInferior.setLayout(new BoxLayout(panelInferior, BoxLayout.X_AXIS));
         panelInferior.add(etiqueta3);
         panelInferior.add(Box.createHorizontalGlue());
         panelInferior.add(passb);
+
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.dad.setUser(this.cajaTexto.getText());
+        this.dad.setPwd(String.valueOf(this.passb.getPassword()));
+        this.dad.quitLogging();
+        this.dispose();
     }
 
     private void construyePanelBoton() {
