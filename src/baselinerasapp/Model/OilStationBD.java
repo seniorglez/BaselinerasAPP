@@ -1,0 +1,77 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package baselinerasapp.Model;
+
+/**
+ *
+ * @author diego
+ */
+public class OilStationBD {
+
+    private int id, kilometers;
+    private CompanyBD con;
+    private String nomenclature, name;
+    private EmployeeBD chief;
+
+    public OilStationBD(int id, CompanyBD con, EmployeeBD chief, String nomenclature, String name, int kilometers) {//revisar el id empleado
+        this.id = id;
+        this.con = con;
+        this.nomenclature = nomenclature;
+        this.name = name;
+        this.kilometers = kilometers;
+        this.chief = chief;
+    }
+
+    //getter and setter
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public CompanyBD getCon() {
+        return con;
+    }
+
+    public void setCon(CompanyBD con) {
+        this.con = con;
+    }
+
+    public String getNomenclature() {
+        return nomenclature;
+    }
+
+    public void setNomenclature(String nomenclature) {
+        this.nomenclature = nomenclature;
+    }
+
+    public int getKilometers() {
+        return kilometers;
+    }
+
+    public void setKilometers(int kilometers) {
+        this.kilometers = kilometers;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public EmployeeBD getChief() {
+        return chief;
+    }
+
+    public void setChief(EmployeeBD chief) {
+        this.chief = chief;
+    }
+
+}
