@@ -5,8 +5,7 @@
  */
 package baselinerasapp.view;
 
-import baselinerasapp.view.LoggingFrame;
-import com.sun.jdi.connect.spi.Connection;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
