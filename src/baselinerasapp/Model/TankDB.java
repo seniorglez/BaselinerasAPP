@@ -9,12 +9,12 @@ package baselinerasapp.Model;
  *
  * @author diego
  */
-public class TankBD {
+public class TankDB {
 
     private OilStationBD oils;
     private int id, capacity, currentCapacity, pricePerLiter;
 
-    public TankBD(OilStationBD oils, int id, int capacity, int currentCapacity, int pricePerLiter) {
+    public TankDB(OilStationBD oils, int id, int capacity, int currentCapacity, int pricePerLiter) {
         this.oils = oils;
         this.id = id;
         this.currentCapacity = currentCapacity;

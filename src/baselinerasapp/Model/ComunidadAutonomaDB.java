@@ -9,12 +9,12 @@ package baselinerasapp.Model;
  *
  * @author diego
  */
-public class ComunidadAutonomaBD {
+public class ComunidadAutonomaDB {
 
     private int id;
     private String name;
 
-    public ComunidadAutonomaBD(int id, String name) {
+    public ComunidadAutonomaDB(int id, String name) {
         this.id = id;
         this.name = name;
     }

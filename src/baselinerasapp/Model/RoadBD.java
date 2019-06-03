@@ -13,9 +13,9 @@ public class RoadBD {
 
     private String nomenclature;
     private int kilometers;
-    private ComunidadAutonomaBD ca;
+    private ComunidadAutonomaDB ca;
 
-    public RoadBD(String nomenclature, int Kilometers, ComunidadAutonomaBD ca) {
+    public RoadBD(String nomenclature, int Kilometers, ComunidadAutonomaDB ca) {
         this.nomenclature = nomenclature;
         this.kilometers = kilometers;
         this.ca = ca;
@@ -37,11 +37,11 @@ public class RoadBD {
         this.kilometers = kilometers;
     }
 
-    public ComunidadAutonomaBD getCa() {
+    public ComunidadAutonomaDB getCa() {
         return ca;
     }
 
-    public void setCa(ComunidadAutonomaBD ca) {
+    public void setCa(ComunidadAutonomaDB ca) {
         this.ca = ca;
     }
     
