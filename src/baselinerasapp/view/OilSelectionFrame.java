@@ -5,13 +5,14 @@
  */
 package baselinerasapp.view;
 
-import baselinerasapp.Model.OilStationBD;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.Map;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -19,9 +20,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
@@ -39,8 +38,7 @@ public class OilSelectionFrame extends JFrame {
     private int gap = 20;
     private Dimension maxDimText = new Dimension(500, 20);
     private Dimension maxDimSroll = new Dimension(500, 800);
-    private  ArrayList<JOilLabel> oilLabels = new ArrayList<JOilLabel>();
-    
+    private ArrayList<JOilLabel> oilLabels = new ArrayList<JOilLabel>();
 
     public OilSelectionFrame() {
         initComponents();
@@ -50,21 +48,37 @@ public class OilSelectionFrame extends JFrame {
         this.setSize(new Dimension(700, 600));
         this.setTitle("Seleción de Gasolinera");
         this.setVisible(true);
-        
+
         chargeOilStations();
-        
-        
+        panlabel = new JPanel();
         panBox = new JPanel();
         panBox.setLayout(new BoxLayout(panBox, BoxLayout.PAGE_AXIS));
         panBox.setSize(new Dimension(800, 600));
         panBox.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
         panBox.add(Box.createRigidArea(new Dimension(0, 75)));
         cajaTexto = new JTextField();
+        cajaTexto.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent ke) {
+                System.out.print("Rescribiendo");
+                printLabels();
+            }
 
+            @Override
+            public void keyPressed(KeyEvent ke) {
+
+            }
+
+            @Override
+            public void keyReleased(KeyEvent ke) {
+
+            }
+
+        });
         cajaTexto.setMaximumSize(maxDimText);
         panBox.add(cajaTexto);
         panBox.add(Box.createRigidArea(new Dimension(0, 25)));
-        initSeachPane();
+        printLabels();
         initJScroll();
         panBox.add(Box.createRigidArea(new Dimension(0, 25)));
         //para poner un marco
@@ -93,28 +107,35 @@ public class OilSelectionFrame extends JFrame {
 
     }
 
-    private void initSeachPane() {
-        panlabel = new JPanel();
+    private void printLabels() {
+        panlabel.removeAll();
+        panlabel.repaint();
+        panlabel.setLayout(new BoxLayout(panlabel, BoxLayout.Y_AXIS));//esta linea hay que comprobarla, no se si el remove all se cepilla el layout 
+        String text = this.cajaTexto.getText();
+        if (text.equals("")) {
+            for (int x = 0; x < this.oilLabels.size(); x++) {
+                panlabel.add(oilLabels.get(x));
+            }
 
-        panlabel.setLayout(new BoxLayout(panlabel, BoxLayout.Y_AXIS));
-           for(int x=0;x<this.oilLabels.size();x++) {
-      panlabel.add(oilLabels.get(x));
-    }
-       
-        
-     
-        
+        } else {
+            for (int x = 0; x < this.oilLabels.size(); x++) {
+
+                if (text.substring(0, text.length()).equals(text)) {
+                    panlabel.add(oilLabels.get(x));
+                }
+            }
+        }
+
     }
 
     private void chargeOilStations() {
-        
+
         //cargas los nombres de las gasolineras y los id, lo relleno para que veas como funciona
-        
         for (int i = 0; i < 100; i++) {
-            
+
             this.oilLabels.add(new JOilLabel("nombre" + i, i));
         }
-        
+
     }
 
 }
