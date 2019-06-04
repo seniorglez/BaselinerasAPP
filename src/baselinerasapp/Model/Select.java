@@ -23,6 +23,7 @@ public class Select {
     private java.sql.Connection con;
     private Object[] fila;
     private int numCol;
+    private Statement st;
 
     ///Constructores///
     private Select() {
@@ -30,7 +31,7 @@ public class Select {
     }
 
     ///Metodos///
-    public static Select getConnection() {
+    public static Select getSelect() {
         if (select == null) {
             select = new Select();
         }
@@ -39,7 +40,12 @@ public class Select {
 
     public void executeSelect(String sql) {
         con = Connection.getConnection().getC();
-        try (Statement st = con.createStatement();) {
+        try{
+//            if (!st.isClosed()) {
+//                st.close();
+//            }
+            
+            st = con.createStatement();
             rs = st.executeQuery(sql);
             rsmd = rs.getMetaData();
             numCol = rsmd.getColumnCount();
@@ -50,14 +56,21 @@ public class Select {
 
     public Object[] getRow() {
         try {
+            if (st.isClosed()) {
+                return null;
+            }
             if (rs.next()) {
                 fila = new Object[numCol];
                 for (int i = 0; i < numCol; i++) {
                     fila[i] = rs.getObject(i+1);
                 }
+                return fila;
+            }else{
+                st.close();
             }
-            return fila;
+            
         } catch (SQLException ex) {
+            System.err.println("Nota: Este error lo suele soltar por que la consulta no ha devuelto nada");
             ex.printStackTrace();
         }
         return null;

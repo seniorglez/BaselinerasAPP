@@ -5,11 +5,10 @@
  */
 package baselinerasapp.view;
 
+import baselinerasapp.Controlador.Controller;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -24,11 +23,12 @@ import javax.swing.JTextField;
  *
  * @author diego
  */
-public class LoggingFrame extends JFrame implements ActionListener{
+public class LoggingFrame extends JFrame{
 
     //variable
+    private static LoggingFrame loginFrame;
     private JPanel panBox, panelSuperior, panelInferior, panelBoton;
-    private JLabel etiqueta1, etiqueta2, etiqueta3;
+    private JLabel etiquetaTitulo, etiquetaUsuario, etiquetaContraseña, etiquetaError;
     private JTextField cajaTexto;
     private JPasswordField passb;
     private BaselinerasAPP dad;
@@ -38,6 +38,7 @@ public class LoggingFrame extends JFrame implements ActionListener{
 
     public LoggingFrame(BaselinerasAPP p) {
         dad=p;//guardamos la referencia a la ventana padre
+        loginFrame = this;
         initComponents();
     }
 
@@ -49,11 +50,11 @@ public class LoggingFrame extends JFrame implements ActionListener{
         panBox = new JPanel();
         panBox.setLayout(new BoxLayout(panBox, BoxLayout.Y_AXIS));
         panBox.setSize(new Dimension(400,300));
-        etiqueta1 = new JLabel("Introduce tus credenciales");
+        etiquetaTitulo = new JLabel("Introduce tus credenciales");
         construyePanelSuperior();
         construyePanelInferior();
         construyePanelBoton();
-        panBox.add(etiqueta1);
+        panBox.add(etiquetaTitulo);
         panBox.add(panelSuperior);
         panBox.add(panelInferior);
         panBox.add(panelBoton);
@@ -77,12 +78,12 @@ public class LoggingFrame extends JFrame implements ActionListener{
 
     public void construyePanelSuperior() {
         panelSuperior = new JPanel();
-        etiqueta2 = new JLabel(" Usuario");
-        etiqueta2.getSize(new Dimension(100,20));
+        etiquetaUsuario = new JLabel(" Usuario");
+        etiquetaUsuario.getSize(new Dimension(100,20));
         cajaTexto = new JTextField(10);
         cajaTexto.setMaximumSize(maxDimText);
         panelSuperior.setLayout(new BoxLayout(panelSuperior, BoxLayout.X_AXIS));
-        panelSuperior.add(etiqueta2);
+        panelSuperior.add(etiquetaUsuario);
         panelSuperior.add(Box.createHorizontalGlue());
         panelSuperior.add(cajaTexto);
 
@@ -90,35 +91,40 @@ public class LoggingFrame extends JFrame implements ActionListener{
 
     public void construyePanelInferior() {
         panelInferior = new JPanel();
-        etiqueta3 = new JLabel(" Contraseña");
-        etiqueta3.getSize(new Dimension(100,20));
+        etiquetaContraseña = new JLabel(" Contraseña");
+        etiquetaContraseña.getSize(new Dimension(100,20));
         passb = new JPasswordField(10);
+        passb.addKeyListener(Controller.getController());
+        passb.setActionCommand("acctionConnectPass");
         passb.setMaximumSize(maxDimText);
         panelInferior.setLayout(new BoxLayout(panelInferior, BoxLayout.X_AXIS));
-        panelInferior.add(etiqueta3);
+        panelInferior.add(etiquetaContraseña);
         panelInferior.add(Box.createHorizontalGlue());
         panelInferior.add(passb);
 
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        this.dad.setUser(this.cajaTexto.getText());
-        this.dad.setPwd(String.valueOf(this.passb.getPassword()));
-        this.dad.connectToOrcl();
-        this.dad.quitLogging();
-        
-        this.dispose();
     }
 
     private void construyePanelBoton() {
         panelBoton=new JPanel();
         panelBoton.setLayout(new BoxLayout(panelBoton, BoxLayout.X_AXIS));
         summit=new JButton("conectar");
-        summit.addActionListener(this);
+        summit.setActionCommand("buttonConnectLoggin");
+        summit.addActionListener(Controller.getController());
         panelBoton.add(Box.createHorizontalGlue());
         panelBoton.add(summit);
         panelBoton.add(Box.createHorizontalGlue());
     }
 
+    public static LoggingFrame getLoginFrame() {
+        return loginFrame;
+    }
+
+    public JTextField getCajaTexto() {
+        return cajaTexto;
+    }
+
+    public JPasswordField getPassb() {
+        return passb;
+    }
+    
 }

@@ -26,7 +26,7 @@ public class Update {
     }
 
     ///Metodos///
-    public static Update getConnection() {
+    public static Update getUpdate() {
         if (update == null) {
             update = new Update();
         }
