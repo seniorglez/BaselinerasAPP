@@ -42,6 +42,7 @@ public class BaselinerasAPP extends JFrame implements ActionListener{
      * @param args the command line arguments
      */
     //VARIABLES
+    private static BaselinerasAPP app;
     private JPanel p;
     private JInternalFrame internal;
     private JDesktopPane dp;
@@ -66,7 +67,7 @@ public class BaselinerasAPP extends JFrame implements ActionListener{
         this.log=null;
     }
     public static void main(String[] args) {
-        new BaselinerasAPP();
+        app = new BaselinerasAPP();
     }
 
     /**
@@ -214,4 +215,13 @@ public class BaselinerasAPP extends JFrame implements ActionListener{
         
     }
 
+    public static BaselinerasAPP getApp() {
+        return app;
+    }
+
+    public JDesktopPane getDp() {
+        return dp;
+    }
+    
+    
 }

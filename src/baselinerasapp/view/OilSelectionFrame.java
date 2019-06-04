@@ -29,8 +29,8 @@ import javax.swing.JTextField;
  * @author ddomi
  */
 public class OilSelectionFrame extends JInternalFrame {
-    //variable
-
+    ///Atributos///
+    private static OilSelectionFrame osf;
     private JPanel panBox, panlabel;
     private JScrollPane jsp;
     private JTextField cajaTexto;
@@ -40,16 +40,24 @@ public class OilSelectionFrame extends JInternalFrame {
     private Dimension maxDimSroll = new Dimension(500, 800);
     private ArrayList<JOilLabel> oilLabels = new ArrayList<JOilLabel>();
 
+    ///Constructores///
     public OilSelectionFrame() {
         initComponents();
     }
 
+    ///Metodos///
+    public static OilSelectionFrame getOsf() {
+        if (osf == null) {
+            osf = new OilSelectionFrame();
+        }
+        return osf;
+    }
+    
     private void initComponents() {
         this.setSize(new Dimension(700, 600));
         this.setTitle("Seleción de Gasolinera");
         this.setVisible(true);
 
-        chargeOilStations();
         panlabel = new JPanel();
         panBox = new JPanel();
         panBox.setLayout(new BoxLayout(panBox, BoxLayout.PAGE_AXIS));
@@ -134,6 +142,7 @@ public class OilSelectionFrame extends JInternalFrame {
 
     }
 
+    @Deprecated
     private void chargeOilStations() {
 
         //cargas los nombres de las gasolineras y los id, lo relleno para que veas como funciona
@@ -141,7 +150,20 @@ public class OilSelectionFrame extends JInternalFrame {
 
             this.oilLabels.add(new JOilLabel("nombre" + i, i));
         }
+        
+    }
 
+    public ArrayList<JOilLabel> getOilLabels() {
+        return oilLabels;
+    }
+
+    public void setOilLabels(ArrayList<JOilLabel> oilLabels) {
+        this.oilLabels = oilLabels;
+        
+        //Establecemos los labels a la lista tras cargarlos
+        for (int x = 0; x < this.oilLabels.size(); x++) {
+                panlabel.add(oilLabels.get(x));
+            }
     }
 
 }

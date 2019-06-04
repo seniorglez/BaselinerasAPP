@@ -14,7 +14,10 @@ import javax.swing.JLabel;
  * @author ddomi
  */
 public class JOilLabel extends JLabel{
+    ///Atributos///
     private int code;
+    
+    ///Constructores///
     public JOilLabel(String s, int code){
         super(s);
         this.code=code;
@@ -43,11 +46,9 @@ public class JOilLabel extends JLabel{
        });
     }
 
+    ///Metodos///
     public int getCode() {
         return code;
     }
-
-
-    
     
 }
