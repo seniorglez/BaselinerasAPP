@@ -16,9 +16,7 @@ import java.sql.Statement;
 public class Delete {
     ///Atributos///
     private static Delete delete;
-    private ResultSet rs;
     private java.sql.Connection con;
-    private Object[] fila;
     private int numCol;
 
     ///Constructores///
@@ -34,7 +32,7 @@ public class Delete {
         return delete;
     }
 
-    public int executeUpdate(String sql) {
+    public int executeDelete(String sql) {
         con = Connection.getConnection().getC();
         try (Statement st = con.createStatement();) {
             numCol = st.executeUpdate(sql);

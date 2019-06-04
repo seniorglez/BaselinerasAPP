@@ -53,7 +53,7 @@ public class Select {
             if (rs.next()) {
                 fila = new Object[numCol];
                 for (int i = 0; i < numCol; i++) {
-                    fila[i] = rs.getObject(i);
+                    fila[i] = rs.getObject(i+1);
                 }
             }
             return fila;

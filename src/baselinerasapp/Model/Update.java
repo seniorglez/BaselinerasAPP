@@ -17,9 +17,7 @@ import java.sql.Statement;
 public class Update {
     ///Atributos///
     private static Update update;
-    private ResultSet rs;
     private java.sql.Connection con;
-    private Object[] fila;
     private int numCol;
 
     ///Constructores///
