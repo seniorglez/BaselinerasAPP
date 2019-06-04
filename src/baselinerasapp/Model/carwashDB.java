@@ -9,13 +9,13 @@ package baselinerasapp.Model;
  *
  * @author diego
  */
-public class carwashBD {
+public class carwashDB {
 
     private int id, nif, tunnels, hosepipes;
     private String name;
     private OilStationBD oils;
 
-    public carwashBD(int id, int nif, int tunnels, int hosepipes, String name, OilStationBD oils) {
+    public carwashDB(int id, int nif, int tunnels, int hosepipes, String name, OilStationBD oils) {
         this.hosepipes = hosepipes;
         this.id = id;
         this.name = name;

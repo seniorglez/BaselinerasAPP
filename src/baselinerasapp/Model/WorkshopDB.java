@@ -9,18 +9,18 @@ package baselinerasapp.Model;
  *
  * @author diego
  */
-public class CompanyBD {
+public class WorkshopDB {
 
-    private int id;
-    private String location;
+    private int id, nif, capacity;
     private String name;
-    private String nif;
+    private OilStationBD oils;
 
-    public CompanyBD(int id, String location, String name, String nif) {
+    public WorkshopDB(int id, OilStationBD oils, int nif, int capacity) {
+        this.capacity = capacity;
         this.id = id;
-        this.location = location;
         this.name = name;
         this.nif = nif;
+        this.oils = oils;
     }
 
     public int getId() {
@@ -31,12 +31,20 @@ public class CompanyBD {
         this.id = id;
     }
 
-    public String getLocation() {
-        return location;
+    public int getNif() {
+        return nif;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setNif(int nif) {
+        this.nif = nif;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
     }
 
     public String getName() {
@@ -47,12 +55,12 @@ public class CompanyBD {
         this.name = name;
     }
 
-    public String getNif() {
-        return nif;
+    public OilStationBD getOils() {
+        return oils;
     }
 
-    public void setNif(String nif) {
-        this.nif = nif;
+    public void setOils(OilStationBD oils) {
+        this.oils = oils;
     }
 
 }

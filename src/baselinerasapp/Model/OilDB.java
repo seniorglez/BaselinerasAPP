@@ -9,12 +9,12 @@ package baselinerasapp.Model;
  *
  * @author diego
  */
-public class OilBD {
+public class OilDB {
 
     private int id;
     private String name, type, origin;
 
-    public OilBD(int id, String name, String type, String origin) {
+    public OilDB(int id, String name, String type, String origin) {
         this.id = id;
         this.name = name;
         this.type = type;
