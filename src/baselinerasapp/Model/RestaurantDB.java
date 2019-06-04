@@ -9,13 +9,13 @@ package baselinerasapp.Model;
  *
  * @author diego
  */
-public class RestaurantBD {
+public class RestaurantDB {
 
     private int id, tables, capacity;//tables stands for the piece of furniture, not for the db's object
     private String name, nif;
     private OilStationBD oils;
 
-    public RestaurantBD(int id, OilStationBD oils, String name, String nif, int tables, int capacity) {
+    public RestaurantDB(int id, OilStationBD oils, String name, String nif, int tables, int capacity) {
         this.id = id;
         this.capacity = capacity;
         this.name = name;
