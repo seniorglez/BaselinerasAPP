@@ -150,8 +150,8 @@ public class BaselinerasAPPtext extends JFrame implements ActionListener{
         //añado el saludo
         dp.add(internal);
         internal.moveToFront();
-        
         dp.add(new OilstationFrame());
+        dp.add(new OilSelectionFrame());
     }
 
     private void escaleBackground() {
