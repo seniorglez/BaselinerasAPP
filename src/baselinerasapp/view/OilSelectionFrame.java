@@ -34,7 +34,6 @@ public class OilSelectionFrame extends JFrame {
     private JScrollPane jsp;
     private JTextField cajaTexto;
     private BaselinerasAPP dad;
-    private JButton summit;
     private int gap = 20;
     private Dimension maxDimText = new Dimension(500, 20);
     private Dimension maxDimSroll = new Dimension(500, 800);
@@ -60,8 +59,7 @@ public class OilSelectionFrame extends JFrame {
         cajaTexto.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent ke) {
-                System.out.print("Rescribiendo");
-                printLabels();
+                
             }
 
             @Override
@@ -71,7 +69,8 @@ public class OilSelectionFrame extends JFrame {
 
             @Override
             public void keyReleased(KeyEvent ke) {
-
+                System.out.print("Rescribiendo");
+                printLabels();
             }
 
         });
@@ -108,20 +107,26 @@ public class OilSelectionFrame extends JFrame {
     }
 
     private void printLabels() {
+        panlabel.setVisible(false);
         panlabel.removeAll();
         panlabel.repaint();
+        panlabel.setVisible(true);
         panlabel.setLayout(new BoxLayout(panlabel, BoxLayout.Y_AXIS));//esta linea hay que comprobarla, no se si el remove all se cepilla el layout 
         String text = this.cajaTexto.getText();
+        System.out.println("filtrando con " + text);
         if (text.equals("")) {
             for (int x = 0; x < this.oilLabels.size(); x++) {
                 panlabel.add(oilLabels.get(x));
             }
 
         } else {
+            System.out.print("ejecutando else");
             for (int x = 0; x < this.oilLabels.size(); x++) {
 
-                if (text.substring(0, text.length()).equals(text)) {
+                if (oilLabels.get(x).getText().substring(0, text.length()).equalsIgnoreCase(text)) {//prueba
+                    
                     panlabel.add(oilLabels.get(x));
+                    System.out.println("Es igual");
                 }
             }
         }

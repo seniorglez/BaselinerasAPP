@@ -18,10 +18,10 @@ public class JOilLabel extends JLabel{
     public JOilLabel(String s, int code){
         super(s);
         this.code=code;
-       this.addMouseListener(new MouseListener(){
+       this.addMouseListener(new MouseListener(){//lo mueves al controlador, eddie
             @Override
             public void mouseClicked(MouseEvent me) {
-                System.out.println("La gasolinera de ventanas debe abrir con " + code);
+                System.out.println("La gasolinera de ventanas debe abrir con " + code);//el code es el id de la gasolinera
             }
 
             @Override
