@@ -18,6 +18,7 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -27,7 +28,7 @@ import javax.swing.JTextField;
  *
  * @author ddomi
  */
-public class OilSelectionFrame extends JFrame {
+public class OilSelectionFrame extends JInternalFrame {
     //variable
 
     private JPanel panBox, panlabel;
@@ -59,7 +60,7 @@ public class OilSelectionFrame extends JFrame {
         cajaTexto.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent ke) {
-                
+
             }
 
             @Override
@@ -89,7 +90,7 @@ public class OilSelectionFrame extends JFrame {
         this.getContentPane().add(panBox, BorderLayout.CENTER);
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setLocationRelativeTo(null);
+
         this.setVisible(true);
         this.setResizable(false);
 
@@ -124,7 +125,7 @@ public class OilSelectionFrame extends JFrame {
             for (int x = 0; x < this.oilLabels.size(); x++) {
 
                 if (oilLabels.get(x).getText().substring(0, text.length()).equalsIgnoreCase(text)) {//prueba
-                    
+
                     panlabel.add(oilLabels.get(x));
                     System.out.println("Es igual");
                 }
