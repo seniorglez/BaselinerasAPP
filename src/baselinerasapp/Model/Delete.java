@@ -25,7 +25,7 @@ public class Delete {
     }
 
     ///Metodos///
-    public static Delete getConnection() {
+    public static Delete getDelete() {
         if (delete == null) {
             delete = new Delete();
         }
