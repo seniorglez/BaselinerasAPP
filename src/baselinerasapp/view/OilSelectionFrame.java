@@ -122,7 +122,7 @@ public class OilSelectionFrame extends JInternalFrame {
         panlabel.setVisible(true);
         panlabel.setLayout(new BoxLayout(panlabel, BoxLayout.Y_AXIS));//esta linea hay que comprobarla, no se si el remove all se cepilla el layout 
         String text = this.cajaTexto.getText();
-        System.out.println("filtrando con " + text);
+     
         if (text.equals("")) {
             for (int x = 0; x < this.oilLabels.size(); x++) {
                 panlabel.add(oilLabels.get(x));
@@ -135,7 +135,7 @@ public class OilSelectionFrame extends JInternalFrame {
                 if (oilLabels.get(x).getText().substring(0, text.length()).equalsIgnoreCase(text)) {//prueba
 
                     panlabel.add(oilLabels.get(x));
-                    System.out.println("Es igual");
+                   
                 }
             }
         }

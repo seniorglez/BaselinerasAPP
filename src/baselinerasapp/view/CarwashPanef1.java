@@ -11,12 +11,12 @@ import java.awt.Color;
  *
  * @author diego
  */
-public class BaselinerasPanef extends javax.swing.JPanel {
+public class CarwashPanef1 extends javax.swing.JPanel {
 
     /**
      * Creates new form BaselinerasPanef
      */
-    public BaselinerasPanef() {
+    public CarwashPanef1() {
         initComponents();
         this.setBackground(new Color(68, 28, 68));
         this.setVisible(true);
@@ -49,7 +49,7 @@ public class BaselinerasPanef extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel1.setText("Gasolinera");
+        jLabel1.setText("Carwash");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
