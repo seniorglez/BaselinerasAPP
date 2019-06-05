@@ -14,7 +14,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
-import java.sql.Statement;
 import javax.swing.ImageIcon;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
@@ -25,11 +24,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.sql.ResultSet;
 
 /**
  *
@@ -185,26 +179,6 @@ public class BaselinerasAPP extends JFrame implements ActionListener{
         });
     }
     
-    public void connectToOrcl(){
-        try(java.sql.Connection c=DriverManager.getConnection("jdbc:oracle:thin:@sveddie.hundirlaweb.es:1521:xe", "GESTOR_GASOLINERAS", "Passw0rd");){
-            Statement st = c.createStatement();
-            
-            ResultSet rs=st.executeQuery("SELECT IDGASOLINERA FROM GASOLINERA");
-            
-            while(rs.next()){
-                System.out.println(rs.getInt(1));
-            }
-            rs.close();
-            st.close();
-            c.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(BaselinerasAPP.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
-            
-        }
-        
-        
-    }
 
     @Override
     public void actionPerformed(ActionEvent e) {

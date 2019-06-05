@@ -41,9 +41,6 @@ public class Select {
     public void executeSelect(String sql) {
         con = Connection.getConnection().getC();
         try{
-//            if (!st.isClosed()) {
-//                st.close();
-//            }
             
             st = con.createStatement();
             rs = st.executeQuery(sql);
