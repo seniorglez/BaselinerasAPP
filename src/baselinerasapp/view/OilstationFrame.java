@@ -8,6 +8,8 @@ package baselinerasapp.view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -19,7 +21,7 @@ import javax.swing.JPanel;
  *
  * @author diego
  */
-public class OilstationFrame extends JInternalFrame {
+public class OilstationFrame extends JInternalFrame implements MouseListener{
 
     private JPanel northPane, westPane, centerPane;
     private JLabel oilStationlabel, employeesLabel, tankLabel, workShopLabel, carwashLabel, googleMapLabel, logo;
@@ -65,6 +67,7 @@ public class OilstationFrame extends JInternalFrame {
         googleMapLabel = new JLabel("Location");
 
         oilStationlabel.setForeground(Color.white);
+        oilStationlabel.addMouseListener(this);
         employeesLabel.setForeground(Color.white);
         tankLabel.setForeground(Color.white);
         workShopLabel.setForeground(Color.white);
@@ -93,5 +96,35 @@ public class OilstationFrame extends JInternalFrame {
         centerPane = new JPanel();
         centerPane.setBackground(new Color(68, 28, 68));
         this.getContentPane().add(centerPane, BorderLayout.CENTER);
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+       JLabel l=(JLabel)e.getComponent();
+       switch(l.getText()){
+           case "OilStation":
+               this.centerPane=new BaselinerasPanef();
+               
+       }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
