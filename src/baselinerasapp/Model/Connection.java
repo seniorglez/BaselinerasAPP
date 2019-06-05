@@ -21,6 +21,7 @@ public class Connection {
     private String password = "";
     java.sql.Connection c;
     private static Connection myConnection;
+    
     ///Constructores///
     private Connection(){
         try {

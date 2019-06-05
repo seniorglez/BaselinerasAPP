@@ -7,12 +7,15 @@ package baselinerasapp.Controlador;
 
 import baselinerasapp.Model.Select;
 import baselinerasapp.view.LoggingFrame;
+import baselinerasapp.view.BaselinerasAPP;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import baselinerasapp.Model.UsersDB;
+import baselinerasapp.view.JOilLabel;
+import baselinerasapp.view.OilSelectionFrame;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import javax.swing.JPasswordField;
+import java.util.ArrayList;
 
 /**
  *
@@ -22,7 +25,8 @@ public class Controller implements ActionListener, KeyListener {
 
     ///Atributos///
     private static Controller controller;
-    private Select select = Select.getSelect();
+    private final Select select = Select.getSelect();
+    private final BaselinerasAPP app = BaselinerasAPP.getApp();
     private UsersDB usuarioActual = null;
 
     ///Constructores///
@@ -78,14 +82,48 @@ public class Controller implements ActionListener, KeyListener {
         if (usuarioActual == null) {
             System.out.println("No existe el usuario o esta mal escrito");
         } else {
-
+            LoggingFrame.getLoginFrame().dispose();
             if (usuarioActual.getTipo().equals("empresa")) {//Este usuario vera las gasolineras del id de su empresa
-                System.out.println("Cargado el usuario " + usuarioActual.getNombre_usuario());
+                //Cuando el usuario se conecte cargara el selector de gasolineras de manera automatica
+                CargarOilSelecctionFrame();
             }
 
         }
     }
 
+    //Cargar OilSelectionFrame y su lista
+    private void CargarOilSelecctionFrame() {
+        this.app.getDp().add(OilSelectionFrame.getOsf());
+        OilSelectionFrame.getOsf().moveToFront();
+        
+        CargarJOilLabel();
+    }
+
+    private void CargarJOilLabel() {
+        //Variables//
+        ArrayList<JOilLabel> oilLabels = new ArrayList<>();
+        String sql;
+        Object[] filas;
+        boolean cargaLabels = false;
+        
+                
+        //Codigo//
+        sql = "SELECT NOMBREGASOLINERA, IDGASOLINERA FROM GASOLINERA WHERE ID_EMPRESA LIKE '" + this.usuarioActual.getReferencia() + "'";
+        this.select.executeSelect(sql);
+        
+        while(!cargaLabels){
+            filas = this.select.getRow();
+            if (filas == null) {
+                cargaLabels = true;
+            }else{
+                //Cargamos cada fila en el label y lo añadimos al array
+                oilLabels.add(new JOilLabel(String.valueOf(filas[0]), Integer.parseInt(String.valueOf(filas[1]))));
+            }
+        }
+        //Cargamos el array al frame
+        OilSelectionFrame.getOsf().setOilLabels(oilLabels);
+    }
+    
     //Metodo ActionListener
     @Override
     public void actionPerformed(ActionEvent ae) {
@@ -99,7 +137,7 @@ public class Controller implements ActionListener, KeyListener {
     //Metodos KeyListener
     @Override
     public void keyTyped(KeyEvent e) {
-        
+
     }
 
     @Override
@@ -111,7 +149,7 @@ public class Controller implements ActionListener, KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
-        
+
     }
 
 }
