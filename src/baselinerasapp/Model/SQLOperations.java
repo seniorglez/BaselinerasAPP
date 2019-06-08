@@ -14,10 +14,10 @@ import java.sql.Statement;
  *
  * @author EdoardoELH
  */
-public class Select {
+public class SQLOperations {
 
     ///Atributos///
-    private static Select select;
+    private static SQLOperations operations;
     private ResultSet rs;
     private ResultSetMetaData rsmd;
     private java.sql.Connection con;
@@ -26,16 +26,16 @@ public class Select {
     private Statement st;
 
     ///Constructores///
-    private Select() {
+    private SQLOperations() {
 
     }
 
     ///Metodos///
-    public static Select getSelect() {
-        if (select == null) {
-            select = new Select();
+    public static SQLOperations getSQLOperations() {
+        if (operations == null) {
+            operations = new SQLOperations();
         }
-        return select;
+        return operations;
     }
 
     public void executeSelect(String sql) {
@@ -50,10 +50,33 @@ public class Select {
             ex.printStackTrace();
         }
     }
+    
+    public int doUpdate(String sql){
+        con = Connection.getConnection().getC();
+        try (Statement st = con.createStatement();) {
+            numCol = st.executeUpdate(sql);
+            return numCol;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return -1;
+    }
+    
+    public int doDelete(String sql) {
+        con = Connection.getConnection().getC();
+        try (Statement st = con.createStatement();) {
+            numCol = st.executeUpdate(sql);
+            return numCol;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return -1;
+    }
 
     public Object[] getRow() {
         try {
             if (st.isClosed()) {
+                System.out.println("La peticion de fila ha devuelto null");
                 return null;
             }
             if (rs.next()) {
@@ -71,6 +94,17 @@ public class Select {
             ex.printStackTrace();
         }
         return null;
+    }
+    
+    public int doInsert (String sql){
+        con = Connection.getConnection().getC();
+        try (Statement st = con.createStatement();) {
+            numCol = st.executeUpdate(sql);
+            return numCol;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return -1;
     }
 
     public int getNumCol() {

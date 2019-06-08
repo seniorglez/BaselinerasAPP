@@ -9,13 +9,15 @@ package baselinerasapp.Model;
  *
  * @author diego
  */
-public class RestaurantDB {
+public class Restaurant {
 
     private int id, tables, capacity;//tables stands for the piece of furniture, not for the db's object
     private String name, nif;
-    private OilStationDB oils;
 
-    public RestaurantDB(int id, OilStationDB oils, String name, String nif, int tables, int capacity) {
+    private OilStation oils;
+
+    public Restaurant(int id, OilStation oils, String name, String nif, int tables, int capacity) {
+
         this.id = id;
         this.capacity = capacity;
         this.name = name;
@@ -63,11 +65,13 @@ public class RestaurantDB {
         this.nif = nif;
     }
 
-    public OilStationDB getOils() {
+
+    public OilStation getOils() {
         return oils;
     }
 
-    public void setOils(OilStationDB oils) {
+    public void setOils(OilStation oils) {
+
         this.oils = oils;
     }
 

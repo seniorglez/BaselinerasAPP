@@ -9,14 +9,14 @@ package baselinerasapp.Model;
  *
  * @author EdoardoELH
  */
-public class UsersDB {
+public class Users {
     ///Atributos///
     private String nombre_usuario;
     private String contraseña;
     private String tipo;
     private int referencia;
     ///Constructor///
-    public UsersDB(String nombre_usuario, String contraseña, String tipo, int referencia) {
+    public Users(String nombre_usuario, String contraseña, String tipo, int referencia) {
         this.nombre_usuario = nombre_usuario;
         this.contraseña = contraseña;
         this.tipo = tipo;

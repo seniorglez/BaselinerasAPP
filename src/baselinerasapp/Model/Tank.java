@@ -9,32 +9,38 @@ package baselinerasapp.Model;
  *
  * @author diego
  */
-public class TankDB {
+public class Tank {
 
-    private OilStationDB oils;
-    private int id, capacity, currentCapacity, pricePerLiter;
 
-    public TankDB(OilStationDB oils, int id, int capacity, int currentCapacity, int pricePerLiter) {
-        this.oils = oils;
+    private OilStation oilStation;
+    private Oil id;
+    private int capacity, currentCapacity;
+    private double pricePerLiter;
+
+    public Tank(OilStation oils, Oil id, int capacity, int currentCapacity, double pricePerLiter) {
+        this.oilStation = oils;
+
         this.id = id;
         this.currentCapacity = currentCapacity;
         this.pricePerLiter = pricePerLiter;
         this.capacity = capacity;
     }
 
-    public OilStationDB getOils() {
-        return oils;
+
+    public OilStation getOilStation() {
+        return oilStation;
     }
 
-    public void setOils(OilStationDB oils) {
-        this.oils = oils;
+    public void setOilStation(OilStation oils) {
+        this.oilStation = oils;
+
     }
 
-    public int getId() {
+    public Oil getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Oil id) {
         this.id = id;
     }
 
@@ -54,11 +60,11 @@ public class TankDB {
         this.currentCapacity = currentCapacity;
     }
 
-    public int getPricePerLiter() {
+    public double getPricePerLiter() {
         return pricePerLiter;
     }
 
-    public void setPricePerLiter(int pricePerLiter) {
+    public void setPricePerLiter(double pricePerLiter) {
         this.pricePerLiter = pricePerLiter;
     }
 
