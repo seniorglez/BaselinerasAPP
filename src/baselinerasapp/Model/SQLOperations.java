@@ -95,6 +95,17 @@ public class SQLOperations {
         }
         return null;
     }
+    
+    public int doInsert (String sql){
+        con = Connection.getConnection().getC();
+        try (Statement st = con.createStatement();) {
+            numCol = st.executeUpdate(sql);
+            return numCol;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return -1;
+    }
 
     public int getNumCol() {
         return numCol;
