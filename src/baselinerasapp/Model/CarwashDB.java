@@ -9,13 +9,13 @@ package baselinerasapp.Model;
  *
  * @author diego
  */
-public class carwashDB {
+public class CarwashDB {
 
     private int id, nif, tunnels, hosepipes;
     private String name;
-    private OilStationBD oils;
+    private OilStationDB oils;
 
-    public carwashDB(int id, int nif, int tunnels, int hosepipes, String name, OilStationBD oils) {
+    public CarwashDB(int id, int nif, int tunnels, int hosepipes, String name, OilStationDB oils) {
         this.hosepipes = hosepipes;
         this.id = id;
         this.name = name;
@@ -64,11 +64,11 @@ public class carwashDB {
         this.name = name;
     }
 
-    public OilStationBD getOils() {
+    public OilStationDB getOils() {
         return oils;
     }
 
-    public void setOils(OilStationBD oils) {
+    public void setOils(OilStationDB oils) {
         this.oils = oils;
     }
 

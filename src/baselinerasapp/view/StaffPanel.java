@@ -120,6 +120,6 @@ public class StaffPanel extends JPanel {
         labelHeader = new JLabel("STAFF");
         headerPanel.add(labelHeader);
         headerPanel.add(Box.createHorizontalGlue());
-        this.add(labelHeader, BorderLayout.PAGE_START);
+        this.add(headerPanel, BorderLayout.PAGE_START);
     }
 }

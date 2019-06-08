@@ -24,7 +24,7 @@ import javax.swing.JPanel;
 public class OilstationFrame extends JInternalFrame implements MouseListener {
 
     private JPanel northPane, westPane, centerPane;
-    private JLabel oilStationlabel, employeesLabel, tankLabel, workShopLabel, carwashLabel, googleMapLabel, logo;
+    private JLabel oilStationlabel, employeesLabel, tankLabel, servicesLabel, googleMapLabel, logo;
     private Dimension dim = new Dimension(10, 10);
     private int gap = 20;
 
@@ -63,8 +63,7 @@ public class OilstationFrame extends JInternalFrame implements MouseListener {
 
         employeesLabel = new JLabel("Staff");
         tankLabel = new JLabel("Tanks");
-        workShopLabel = new JLabel("Workshop");
-        carwashLabel = new JLabel("Carwash");
+        servicesLabel = new JLabel("Services");
         googleMapLabel = new JLabel("Location");
 
         oilStationlabel.setForeground(Color.white);
@@ -73,10 +72,8 @@ public class OilstationFrame extends JInternalFrame implements MouseListener {
         employeesLabel.addMouseListener(this);
         tankLabel.setForeground(Color.white);
         tankLabel.addMouseListener(this);
-        workShopLabel.setForeground(Color.white);
-        workShopLabel.addMouseListener(this);
-        carwashLabel.setForeground(Color.white);
-        carwashLabel.addMouseListener(this);
+        servicesLabel.setForeground(Color.white);
+        servicesLabel.addMouseListener(this);
         googleMapLabel.setForeground(Color.white);
         googleMapLabel.addMouseListener(this);
 
@@ -88,9 +85,7 @@ public class OilstationFrame extends JInternalFrame implements MouseListener {
         westPane.add(Box.createVerticalGlue());
         westPane.add(tankLabel);
         westPane.add(Box.createVerticalGlue());
-        westPane.add(workShopLabel);
-        westPane.add(Box.createVerticalGlue());
-        westPane.add(carwashLabel);
+        westPane.add(servicesLabel);
         westPane.add(Box.createVerticalGlue());
         westPane.add(googleMapLabel);
         westPane.add(Box.createVerticalGlue());
@@ -133,20 +128,14 @@ public class OilstationFrame extends JInternalFrame implements MouseListener {
                 centerPane.setVisible(true);
 
                 break;
-            case "Workshop":
+           case "Services":
                 resetCenter();
                 centerPane.setVisible(false);
-                centerPane.add(new WorkshopPanel(), BorderLayout.CENTER);
-                centerPane.setVisible(true);
-                break;
-            case "Carwash":
-                resetCenter();
-                centerPane.setVisible(false);
-                centerPane.add(new CarwashPane(), BorderLayout.CENTER);
+                centerPane.add(new ServicesPanel(), BorderLayout.CENTER);
                 centerPane.setVisible(true);
                 break;
             case "Location":
-                break;
+               
             default:
                 System.err.print("somethink go wrong");
 

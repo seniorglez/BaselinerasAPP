@@ -12,10 +12,10 @@ package baselinerasapp.Model;
 public class EmployeeDB {
 
     private int id;
-    private OilStationBD oils;
+    private OilStationDB oils;
     private String dni, name, surname;
 
-    public EmployeeDB(int id, OilStationBD oils, String dni, String name, String surname) {
+    public EmployeeDB(int id, OilStationDB oils, String dni, String name, String surname) {
         this.id = id;
         this.oils = oils;
         this.dni = dni;
@@ -31,11 +31,11 @@ public class EmployeeDB {
         this.id = id;
     }
 
-    public OilStationBD getOils() {
+    public OilStationDB getOils() {
         return oils;
     }
 
-    public void setOils(OilStationBD oils) {
+    public void setOils(OilStationDB oils) {
         this.oils = oils;
     }
 

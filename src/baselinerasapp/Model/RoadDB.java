@@ -9,13 +9,13 @@ package baselinerasapp.Model;
  *
  * @author diego
  */
-public class RoadBD {
+public class RoadDB {
 
     private String nomenclature;
     private int kilometers;
     private ComunidadAutonomaDB ca;
 
-    public RoadBD(String nomenclature, int Kilometers, ComunidadAutonomaDB ca) {
+    public RoadDB(String nomenclature, int Kilometers, ComunidadAutonomaDB ca) {
         this.nomenclature = nomenclature;
         this.kilometers = kilometers;
         this.ca = ca;
