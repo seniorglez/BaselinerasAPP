@@ -9,12 +9,9 @@ import javax.swing.BoxLayout;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import baselinerasapp.Model.RestaurantDB;
-import baselinerasapp.Model.WorkshopDB;
-import baselinerasapp.Model.CarwashDB;
+import baselinerasapp.Model.Restaurant;
+import baselinerasapp.Model.Workshop;
+import baselinerasapp.Model.Carwash;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -35,9 +32,9 @@ public class ServicesPanel extends JPanel {
     private JComboBox combo;
     private GridBagConstraints c;
     private JLabel name,nif,tables,capacity;
-    private RestaurantDB rest;
-    private WorkshopDB work;
-    private CarwashDB carw;
+    private Restaurant rest;
+    private Workshop work;
+    private Carwash carw;
 
     public ServicesPanel() {
         this.setLayout(new BorderLayout());
@@ -47,8 +44,7 @@ public class ServicesPanel extends JPanel {
         BuildHeader();
         BuildDefault();
         BuildRestaurant();
-        BuildCarwash();
-        BuildWorkshop();
+       
     }
 
     private void BuildHeader() {
@@ -192,8 +188,8 @@ centerPane.setVisible(false);
     }
 
     private void pruebita() {
-        rest=new RestaurantDB(WIDTH, null, "nombre", "ajda0oijd", 3, 10);
-        carw=new CarwashDB(1, 123132, 3,3, "NOMBRE", null);
-        work=new WorkshopDB(1, null, 1, 1);
+        rest=new Restaurant(WIDTH, null, "nombre", "ajda0oijd", 3, 10);
+        //carw=new Carwash(1, 123132, 3,3, "NOMBRE", null);
+        //work=new Workshop(1, null, 1, 1);
     }
 }
