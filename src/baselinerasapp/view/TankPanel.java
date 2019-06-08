@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author ddomi
  */
-public class StaffPanel extends JPanel {
+public class TankPanel extends JPanel {
 //si quisieramos exigir restricciones deberiamos usar un TableModel, molaria mas otro frame y cambiar editable a null
     //ejemplo de tabla para ver como queda https://docs.oracle.com/javase/tutorial/uiswing/components/table.html  la llenas como veas señor controlador
 
@@ -84,7 +84,7 @@ public class StaffPanel extends JPanel {
     private JPanel headerPanel;
     private JLabel labelHeader;
 
-    public StaffPanel() {
+    public TankPanel() {
         this.setLayout(new BorderLayout());
         BuildTable();
         BuildHeader();
@@ -117,9 +117,9 @@ public class StaffPanel extends JPanel {
         headerPanel = new JPanel();
         headerPanel.setLayout(new BoxLayout(headerPanel, BoxLayout.Y_AXIS));
         headerPanel.add(Box.createHorizontalGlue());//no se coloca porque no le sale del papo, lo respeto. Igual tiene que ver con que lo coloque en line start y no en north.Preguntare a Macarena
-        labelHeader = new JLabel("STAFF");
+        labelHeader = new JLabel("OIL");
         headerPanel.add(labelHeader);
         headerPanel.add(Box.createHorizontalGlue());
-        this.add(labelHeader, BorderLayout.PAGE_START);
+        this.add(headerPanel, BorderLayout.PAGE_START);
     }
 }

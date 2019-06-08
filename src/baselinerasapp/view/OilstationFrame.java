@@ -112,7 +112,6 @@ public class OilstationFrame extends JInternalFrame implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {//lo mueves al controlador, simplemente es para hacer pruebas
-        System.out.print("click");
         JLabel l = (JLabel) e.getComponent();
         switch (l.getText()) {
             case "OilStation":
@@ -130,20 +129,20 @@ public class OilstationFrame extends JInternalFrame implements MouseListener {
             case "Tanks":
                 resetCenter();
                 centerPane.setVisible(false);
-                centerPane.add(new TankPanef1(), BorderLayout.CENTER);
+                centerPane.add(new TankPanel(), BorderLayout.CENTER);
                 centerPane.setVisible(true);
 
                 break;
             case "Workshop":
                 resetCenter();
                 centerPane.setVisible(false);
-                centerPane.add(new WorkshopPanef1(), BorderLayout.CENTER);
+                centerPane.add(new WorkshopPanel(), BorderLayout.CENTER);
                 centerPane.setVisible(true);
                 break;
             case "Carwash":
                 resetCenter();
                 centerPane.setVisible(false);
-                centerPane.add(new CarwashPanef1(), BorderLayout.CENTER);
+                centerPane.add(new CarwashPane(), BorderLayout.CENTER);
                 centerPane.setVisible(true);
                 break;
             case "Location":
