@@ -111,7 +111,7 @@ public class OilstationFrame extends JInternalFrame implements MouseListener {
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {
+    public void mouseClicked(MouseEvent e) {//lo mueves al controlador, simplemente es para hacer pruebas
         System.out.print("click");
         JLabel l = (JLabel) e.getComponent();
         switch (l.getText()) {
@@ -124,7 +124,7 @@ public class OilstationFrame extends JInternalFrame implements MouseListener {
             case "Staff":
                 resetCenter();
                 centerPane.setVisible(false);
-                centerPane.add(new StaffPanef1(), BorderLayout.CENTER);
+                centerPane.add(new StaffPanel(), BorderLayout.CENTER);
                 centerPane.setVisible(true);
                 break;
             case "Tanks":
