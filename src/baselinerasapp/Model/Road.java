@@ -9,13 +9,13 @@ package baselinerasapp.Model;
  *
  * @author diego
  */
-public class RoadBD {
+public class Road {
 
     private String nomenclature;
     private int kilometers;
-    private ComunidadAutonomaDB ca;
+    private ComunidadAutonoma ca;
 
-    public RoadBD(String nomenclature, int Kilometers, ComunidadAutonomaDB ca) {
+    public Road(String nomenclature, int Kilometers, ComunidadAutonoma ca) {
         this.nomenclature = nomenclature;
         this.kilometers = kilometers;
         this.ca = ca;
@@ -37,11 +37,11 @@ public class RoadBD {
         this.kilometers = kilometers;
     }
 
-    public ComunidadAutonomaDB getCa() {
+    public ComunidadAutonoma getCa() {
         return ca;
     }
 
-    public void setCa(ComunidadAutonomaDB ca) {
+    public void setCa(ComunidadAutonoma ca) {
         this.ca = ca;
     }
     

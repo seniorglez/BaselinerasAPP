@@ -9,14 +9,14 @@ package baselinerasapp.Model;
  *
  * @author diego
  */
-public class OilStationBD {
+public class OilStation {
 
     private int id, kilometers;
-    private CompanyDB con;
+    private Company con;
     private String nomenclature, name;
-    private EmployeeDB chief;
+    private Employee chief;
 
-    public OilStationBD(int id, CompanyDB con, EmployeeDB chief, String nomenclature, String name, int kilometers) {//revisar el id empleado
+    public OilStation(int id, Company con, Employee chief, String nomenclature, String name, int kilometers) {//revisar el id empleado
         this.id = id;
         this.con = con;
         this.nomenclature = nomenclature;
@@ -34,11 +34,11 @@ public class OilStationBD {
         this.id = id;
     }
 
-    public CompanyDB getCon() {
+    public Company getCon() {
         return con;
     }
 
-    public void setCon(CompanyDB con) {
+    public void setCon(Company con) {
         this.con = con;
     }
 
@@ -66,11 +66,11 @@ public class OilStationBD {
         this.name = name;
     }
 
-    public EmployeeDB getChief() {
+    public Employee getChief() {
         return chief;
     }
 
-    public void setChief(EmployeeDB chief) {
+    public void setChief(Employee chief) {
         this.chief = chief;
     }
 

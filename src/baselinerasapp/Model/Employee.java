@@ -9,13 +9,13 @@ package baselinerasapp.Model;
  *
  * @author diego
  */
-public class EmployeeDB {
+public class Employee {
 
     private int id;
-    private OilStationBD oils;
+    private OilStation oils;
     private String dni, name, surname;
 
-    public EmployeeDB(int id, OilStationBD oils, String dni, String name, String surname) {
+    public Employee(int id, OilStation oils, String dni, String name, String surname) {
         this.id = id;
         this.oils = oils;
         this.dni = dni;
@@ -31,11 +31,11 @@ public class EmployeeDB {
         this.id = id;
     }
 
-    public OilStationBD getOils() {
+    public OilStation getOils() {
         return oils;
     }
 
-    public void setOils(OilStationBD oils) {
+    public void setOils(OilStation oils) {
         this.oils = oils;
     }
 

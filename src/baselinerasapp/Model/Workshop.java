@@ -9,19 +9,18 @@ package baselinerasapp.Model;
  *
  * @author diego
  */
-public class carwashDB {
+public class Workshop {
 
-    private int id, nif, tunnels, hosepipes;
-    private String name;
-    private OilStationBD oils;
+    private int id, capacity;
+    private String name, nif;
+    private OilStation oils;
 
-    public carwashDB(int id, int nif, int tunnels, int hosepipes, String name, OilStationBD oils) {
-        this.hosepipes = hosepipes;
+    public Workshop(int id, OilStation oils, String name, String nif, int capacity) {
+        this.capacity = capacity;
         this.id = id;
         this.name = name;
         this.nif = nif;
         this.oils = oils;
-        this.tunnels = tunnels;
     }
 
     public int getId() {
@@ -32,28 +31,20 @@ public class carwashDB {
         this.id = id;
     }
 
-    public int getNif() {
+    public String getNif() {
         return nif;
     }
 
-    public void setNif(int nif) {
+    public void setNif(String nif) {
         this.nif = nif;
     }
 
-    public int getTunnels() {
-        return tunnels;
+    public int getCapacity() {
+        return capacity;
     }
 
-    public void setTunnels(int tunnels) {
-        this.tunnels = tunnels;
-    }
-
-    public int getHosepipes() {
-        return hosepipes;
-    }
-
-    public void setHosepipes(int hosepipes) {
-        this.hosepipes = hosepipes;
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
     }
 
     public String getName() {
@@ -64,11 +55,11 @@ public class carwashDB {
         this.name = name;
     }
 
-    public OilStationBD getOils() {
+    public OilStation getOils() {
         return oils;
     }
 
-    public void setOils(OilStationBD oils) {
+    public void setOils(OilStation oils) {
         this.oils = oils;
     }
 
