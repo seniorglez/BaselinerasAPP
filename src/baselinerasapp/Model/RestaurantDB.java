@@ -13,9 +13,9 @@ public class RestaurantDB {
 
     private int id, tables, capacity;//tables stands for the piece of furniture, not for the db's object
     private String name, nif;
-    private OilStationBD oils;
+    private OilStationDB oils;
 
-    public RestaurantDB(int id, OilStationBD oils, String name, String nif, int tables, int capacity) {
+    public RestaurantDB(int id, OilStationDB oils, String name, String nif, int tables, int capacity) {
         this.id = id;
         this.capacity = capacity;
         this.name = name;
@@ -63,11 +63,11 @@ public class RestaurantDB {
         this.nif = nif;
     }
 
-    public OilStationBD getOils() {
+    public OilStationDB getOils() {
         return oils;
     }
 
-    public void setOils(OilStationBD oils) {
+    public void setOils(OilStationDB oils) {
         this.oils = oils;
     }
 

@@ -9,14 +9,14 @@ package baselinerasapp.Model;
  *
  * @author diego
  */
-public class OilStationBD {
+public class OilStationDB {
 
     private int id, kilometers;
     private CompanyDB con;
     private String nomenclature, name;
     private EmployeeDB chief;
 
-    public OilStationBD(int id, CompanyDB con, EmployeeDB chief, String nomenclature, String name, int kilometers) {//revisar el id empleado
+    public OilStationDB(int id, CompanyDB con, EmployeeDB chief, String nomenclature, String name, int kilometers) {//revisar el id empleado
         this.id = id;
         this.con = con;
         this.nomenclature = nomenclature;

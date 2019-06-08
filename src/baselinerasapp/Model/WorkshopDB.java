@@ -13,9 +13,9 @@ public class WorkshopDB {
 
     private int id, nif, capacity;
     private String name;
-    private OilStationBD oils;
+    private OilStationDB oils;
 
-    public WorkshopDB(int id, OilStationBD oils, int nif, int capacity) {
+    public WorkshopDB(int id, OilStationDB oils, int nif, int capacity) {
         this.capacity = capacity;
         this.id = id;
         this.name = name;
@@ -55,11 +55,11 @@ public class WorkshopDB {
         this.name = name;
     }
 
-    public OilStationBD getOils() {
+    public OilStationDB getOils() {
         return oils;
     }
 
-    public void setOils(OilStationBD oils) {
+    public void setOils(OilStationDB oils) {
         this.oils = oils;
     }
 
