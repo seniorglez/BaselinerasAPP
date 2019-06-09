@@ -112,7 +112,7 @@ public class OilstationFrame extends JInternalFrame implements MouseListener {
             case "OilStation":
                 resetCenter();
                 centerPane.setVisible(false);
-                centerPane.add(new BaselinerasPanef(), BorderLayout.CENTER);
+                centerPane.add(new BaselinerasPane(), BorderLayout.CENTER);
                 centerPane.setVisible(true);
                 break;
             case "Staff":
