@@ -18,8 +18,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import baselinerasapp.Model.Users;
 import baselinerasapp.Model.Carwash;
+import baselinerasapp.Model.ComunidadAutonoma;
+import baselinerasapp.Model.Road;
 import baselinerasapp.Model.Workshop;
-import baselinerasapp.view.BaselinerasPanef;
+import baselinerasapp.view.BaselinerasPane;
 import baselinerasapp.view.OilSelectionFrame;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -48,6 +50,8 @@ public class Controller implements ActionListener, KeyListener, MouseListener {
     private Users usuarioActual = null;
     private ArrayList<JOilLabel> oilLabels;
     //Objetos del panel de administracion
+    private ComunidadAutonoma ca;
+    private Road carretera;
     private Company company;
     private OilStation station;
     private ArrayList <Employee> employeers = new ArrayList<>();
@@ -58,7 +62,7 @@ public class Controller implements ActionListener, KeyListener, MouseListener {
     private Carwash carwash;
     private Workshop workshop;
     //Paneles OilStationFrame
-    private BaselinerasPanef panelGasolinera = new BaselinerasPanef();
+    private BaselinerasPane panelGasolinera;
     private StaffPanel panelEmpleados = new StaffPanel();
     private TankPanel panelTanques = new TankPanel();
     private ServicesPanel panelServicios = new ServicesPanel();
@@ -68,7 +72,7 @@ public class Controller implements ActionListener, KeyListener, MouseListener {
     
     ///Constructores///
     private Controller() {
-
+        
     }
 
     ///Metodos///
@@ -189,7 +193,18 @@ public class Controller implements ActionListener, KeyListener, MouseListener {
     
     private void cargarContenidoPaneles() {
         //Contenido panel Gasolinera
-        //POR ESCRIBIR//
+        JLabel html = new JLabel();
+        html.setText("<html>"
+                + "<h1>Data about the oilstation</h1>"
+                + "<table border=\"1\" cellpadding=\"0\" cellspacing=\"0\" >"
+                + "<tr><td>Nombre</td><td>" + this.station.getName() + "</td></tr>"
+                + "<tr><td>Carretera</td><td>" + this.station.getNomenclature().getNomenclature() + "</td></tr>"
+                + "<tr><td>Kilometro</td><td>" + this.station.getKilometers() + "</td></tr>"
+                + "<tr><td>Comunidad Autonoma</td><td>" + this.station.getNomenclature().getCa().getName() + "</td></tr>"
+                + "</table>"
+                + "</html>");
+        html.setHorizontalAlignment(JLabel.CENTER);
+        this.panelGasolinera = new BaselinerasPane(html);
         
         //Contenido panel Empleados
         Object[][] data = new Object[this.employeers.size()][4];
@@ -221,6 +236,18 @@ public class Controller implements ActionListener, KeyListener, MouseListener {
         Object[] fila;
         
         //Codigo//
+        //Comunidad Autonoma
+        sql = "SELECT IDCOMUNIDAD, NOMBRECOMUNIDAD FROM COMUNIDAD_AUTONOMA WHERE IDCOMUNIDAD IN (SELECT IDCOMUNIDAD FROM CARRETERA WHERE NOMENCLATURA LIKE (SELECT NOMENCLATURA FROM EMPRESA WHERE ID_EMPRESA LIKE '" + code + "'))";
+        this.sqlo.executeSelect(sql);
+        fila = this.sqlo.getRow();
+        this.ca = new ComunidadAutonoma(Integer.parseInt(String.valueOf(fila[0])), String.valueOf(fila[1]));
+        
+        //Carretera
+        sql = "SELECT NOMENCLATURA, IDCOMUNIDAD, KILOMETROS FROM CARRETERA WHERE NOMENCLATURA LIKE  (SELECT NOMENCLATURA FROM EMPRESA WHERE ID_EMPRESA LIKE '" + code + "')";
+        this.sqlo.executeSelect(sql);
+        fila = this.sqlo.getRow();
+        this.carretera = new Road(String.valueOf(fila[0]), Integer.parseInt(String.valueOf(fila[2])), ca);
+        
         //Compañia
         sql = "SELECT ID_EMPRESA, UBICACION, NOMBREEMPRESA, NIFEMPRESA FROM EMPRESA WHERE ID_EMPRESA LIKE '" + code + "'";
         this.sqlo.executeSelect(sql);
@@ -231,7 +258,7 @@ public class Controller implements ActionListener, KeyListener, MouseListener {
         sql = "SELECT IDGASOLINERA, ID_EMPRESA, NOMENCLATURA, IDEMPLEADO, NOMBREGASOLINERA, KILOMETRO FROM GASOLINERA WHERE IDGASOLINERA LIKE '" + code + "'";
         this.sqlo.executeSelect(sql);
         fila = this.sqlo.getRow();
-        this.station = new OilStation(Integer.parseInt(String.valueOf(fila[0])), company, staff, String.valueOf(fila[3]), String.valueOf(fila[4]), Integer.parseInt(String.valueOf(fila[5])));
+        this.station = new OilStation(Integer.parseInt(String.valueOf(fila[0])), company, staff, this.carretera, String.valueOf(fila[4]), Integer.parseInt(String.valueOf(fila[5])));
         
         //Encargado
         sql = "SELECT IDEMPLEADO, IDGASOLINERA, DNI, NOMBREEMPLEADO, APELLIDOSEMPLEADO FROM PERSONAL WHERE IDEMPLEADO LIKE (SELECT IDEMPLEADO FROM GASOLINERA WHERE IDGASOLINERA LIKE '" + code + "')";
@@ -279,9 +306,9 @@ public class Controller implements ActionListener, KeyListener, MouseListener {
                 cargaterminada = true;
             }else{
                 //Recuperamos el id del tipo de gasolina
-                numOil = Integer.valueOf(String.valueOf(fila[0]));
+                numOil = Integer.valueOf(String.valueOf(fila[1]));
                 //Cargamos cada fila en el objeto y lo añadimos al array
-                this.tanks.add(new Tank(station, (Oil)this.Oils.get(numOil), Integer.valueOf(String.valueOf(fila[2])), Integer.valueOf(String.valueOf(fila[3])), Double.valueOf(String.valueOf(fila[4]))));
+                this.tanks.add(new Tank(station, (Oil)this.Oils.get(numOil-1), Integer.valueOf(String.valueOf(fila[2])), Integer.valueOf(String.valueOf(fila[3])), Double.valueOf(String.valueOf(fila[4]))));
             }
         }
         
