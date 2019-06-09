@@ -109,7 +109,7 @@ public class BaselinerasAPP extends JFrame implements ActionListener{
         menuBar.add(menu);
 
 //añadimos los items
-        menuItem = new JMenuItem("Direct Conection");
+        menuItem = new JMenuItem("Login");
         menuItem.getAccessibleContext().setAccessibleDescription(
                 "This doesn't really do anything");
         
@@ -121,7 +121,7 @@ public class BaselinerasAPP extends JFrame implements ActionListener{
         this.setJMenuBar(menuBar);
     }
 
-    private void makeWelcome() {
+    public void makeWelcome() {
         // Se construye el panel que ira dentro del JInternalFrame
         p = new JPanel();
         p.setLayout(new FlowLayout());
@@ -184,6 +184,7 @@ public class BaselinerasAPP extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if(log==null){
            log=new LoggingFrame(this); //es necesario poder volver a poner log a null cuando cierras el principal
+           log.setLocationRelativeTo(null);
            
         }
         
@@ -200,5 +201,26 @@ public class BaselinerasAPP extends JFrame implements ActionListener{
     public JInternalFrame getInternal() {
         return internal;
     }
+
+    public JMenu getMenu() {
+        return menu;
+    }
+
+    public JMenuItem getMenuItem() {
+        return menuItem;
+    }
+
+    public void setMenuItem(JMenuItem menuItem) {
+        this.menuItem = menuItem;
+        menu.add(menuItem);
+    }
+
+    public LoggingFrame getLog() {
+        return log;
+    }
+
+    public void setLog(LoggingFrame log) {
+        this.log = log;
+    }  
     
 }

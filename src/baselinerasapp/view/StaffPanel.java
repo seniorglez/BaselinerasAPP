@@ -92,7 +92,8 @@ public class StaffPanel extends JPanel {
         this.setLayout(new BorderLayout());
         BuildTable();
         BuildHeader();
-        BuildFoot();
+        //No esta imprementado
+        //BuildFoot();
 
     }
 

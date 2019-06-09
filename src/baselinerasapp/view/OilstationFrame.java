@@ -22,7 +22,7 @@ import baselinerasapp.Controlador.Controller;
  *
  * @author diego
  */
-public class OilstationFrame extends JInternalFrame implements MouseListener {
+public class OilstationFrame extends JInternalFrame{
 
     private static OilstationFrame oilstationframe;
     private JPanel northPane, westPane, centerPane;
@@ -114,62 +114,10 @@ public class OilstationFrame extends JInternalFrame implements MouseListener {
         this.getContentPane().add(centerPane, BorderLayout.CENTER);//añado el center al centro del panel
     }
 
-    @Override 
-    public void mouseClicked(MouseEvent e) {//lo mueves al controlador, simplemente es para hacer pruebas
-        JLabel l = (JLabel) e.getComponent();
-        switch (l.getText()) {
-            case "OilStation":
-                resetCenter();
-                centerPane.setVisible(false);
-                centerPane.add(new BaselinerasPane(), BorderLayout.CENTER);
-                centerPane.setVisible(true);
-                break;
-            case "Staff":
-                resetCenter();
-                centerPane.setVisible(false);
-                centerPane.add(new StaffPanel(), BorderLayout.CENTER);
-                centerPane.setVisible(true);
-                break;
-            case "Tanks":
-                resetCenter();
-                centerPane.setVisible(false);
-                centerPane.add(new TankPanel(), BorderLayout.CENTER);
-                centerPane.setVisible(true);
-
-                break;
-           case "Services":
-                resetCenter();
-                centerPane.setVisible(false);
-                centerPane.add(new ServicesPanel(), BorderLayout.CENTER);
-                centerPane.setVisible(true);
-                break;
-            case "Location":
-               
-            default:
-                System.err.print("somethink go wrong");
-
-        }
-    }
 
     public void resetCenter() {
         centerPane.removeAll();
         centerPane.repaint();
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
     }
 
     public JPanel getCenterPane() {

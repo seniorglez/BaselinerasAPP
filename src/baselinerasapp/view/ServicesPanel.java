@@ -192,4 +192,25 @@ centerPane.setVisible(false);
         //carw=new Carwash(1, 123132, 3,3, "NOMBRE", null);
         //work=new Workshop(1, null, 1, 1);
     }
+
+    public JComboBox getCombo() {
+        return combo;
+    }
+    
+    public void setRestaurant(Restaurant servicio){
+        this.rest = servicio;
+        BuildRestaurant();
+    }
+    
+    public void setCarWash(Carwash servicio){
+        this.carw = servicio;
+        BuildCarwash();
+    }
+    
+    public void setWorkshop(Workshop servicio){
+        this.work = servicio;
+        BuildWorkshop();
+    }
+    
+    
 }

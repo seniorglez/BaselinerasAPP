@@ -49,28 +49,28 @@ public class BaselinerasPane extends JPanel {
         constraints.weighty = 0.0;
         constraints.anchor = GridBagConstraints.CENTER;
 
-        button1 = new JButton("Boton 1");
-        constraints.gridx = 0;
-        constraints.gridy = 2;
-        constraints.gridwidth = 1;
-        constraints.gridheight = 1;
-        this.add(button1, constraints);
-
-        button3 = new JButton("Boton 3");
-        constraints.gridx = 2;
-        constraints.gridy = 2;
-        constraints.gridwidth = 1;
-        constraints.gridheight = 1;
-        this.add(button3, constraints);
-
-        button2 = new JButton("Boton 2");
-        constraints.gridx = 1;
-        constraints.gridy = 2;
-        constraints.gridwidth = 1;
-        constraints.gridheight = 1;
-        constraints.weightx = 1.0;
-        constraints.fill = GridBagConstraints.HORIZONTAL;// debe estirarse sólo en horizontal
-        this.add(button2, constraints);
+//        button1 = new JButton("Boton 1");
+//        constraints.gridx = 0;
+//        constraints.gridy = 2;
+//        constraints.gridwidth = 1;
+//        constraints.gridheight = 1;
+//        this.add(button1, constraints);
+//
+//        button3 = new JButton("Boton 3");
+//        constraints.gridx = 2;
+//        constraints.gridy = 2;
+//        constraints.gridwidth = 1;
+//        constraints.gridheight = 1;
+//        this.add(button3, constraints);
+//
+//        button2 = new JButton("Boton 2");
+//        constraints.gridx = 1;
+//        constraints.gridy = 2;
+//        constraints.gridwidth = 1;
+//        constraints.gridheight = 1;
+//        constraints.weightx = 1.0;
+//        constraints.fill = GridBagConstraints.HORIZONTAL;// debe estirarse sólo en horizontal
+//        this.add(button2, constraints);
     }
 
     @Deprecated
