@@ -16,6 +16,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import baselinerasapp.Controlador.Controller;
 
 /**
  *
@@ -23,15 +24,23 @@ import javax.swing.JPanel;
  */
 public class OilstationFrame extends JInternalFrame implements MouseListener {
 
+    private static OilstationFrame oilstationframe;
     private JPanel northPane, westPane, centerPane;
     private JLabel oilStationlabel, employeesLabel, tankLabel, servicesLabel, googleMapLabel, logo;
     private Dimension dim = new Dimension(10, 10);
     private int gap = 20;
 
-    public OilstationFrame() {
+    private OilstationFrame() {
         initComponents();
         this.setVisible(true);
         this.moveToFront();
+    }
+    
+    public static OilstationFrame getoilstationframe(){
+        if (oilstationframe == null) {
+            oilstationframe = new OilstationFrame();
+        }
+        return oilstationframe;
     }
 
     private void initComponents() {
@@ -67,15 +76,15 @@ public class OilstationFrame extends JInternalFrame implements MouseListener {
         googleMapLabel = new JLabel("Location");
 
         oilStationlabel.setForeground(Color.white);
-        oilStationlabel.addMouseListener(this);
+        oilStationlabel.addMouseListener(Controller.getController());
         employeesLabel.setForeground(Color.white);
-        employeesLabel.addMouseListener(this);
+        employeesLabel.addMouseListener(Controller.getController());
         tankLabel.setForeground(Color.white);
-        tankLabel.addMouseListener(this);
+        tankLabel.addMouseListener(Controller.getController());
         servicesLabel.setForeground(Color.white);
-        servicesLabel.addMouseListener(this);
+        servicesLabel.addMouseListener(Controller.getController());
         googleMapLabel.setForeground(Color.white);
-        googleMapLabel.addMouseListener(this);
+        googleMapLabel.addMouseListener(Controller.getController());
 
         westPane.add(Box.createRigidArea(dim));
         westPane.add(Box.createVerticalGlue());
@@ -87,8 +96,8 @@ public class OilstationFrame extends JInternalFrame implements MouseListener {
         westPane.add(Box.createVerticalGlue());
         westPane.add(servicesLabel);
         westPane.add(Box.createVerticalGlue());
-        westPane.add(googleMapLabel);
-        westPane.add(Box.createVerticalGlue());
+        //westPane.add(googleMapLabel);
+        //westPane.add(Box.createVerticalGlue());
 
         this.getContentPane().add(westPane, BorderLayout.WEST);
     }
@@ -105,7 +114,7 @@ public class OilstationFrame extends JInternalFrame implements MouseListener {
         this.getContentPane().add(centerPane, BorderLayout.CENTER);//añado el center al centro del panel
     }
 
-    @Override
+    @Override 
     public void mouseClicked(MouseEvent e) {//lo mueves al controlador, simplemente es para hacer pruebas
         JLabel l = (JLabel) e.getComponent();
         switch (l.getText()) {
@@ -142,7 +151,7 @@ public class OilstationFrame extends JInternalFrame implements MouseListener {
         }
     }
 
-    private void resetCenter() {
+    public void resetCenter() {
         centerPane.removeAll();
         centerPane.repaint();
     }
@@ -161,6 +170,10 @@ public class OilstationFrame extends JInternalFrame implements MouseListener {
 
     @Override
     public void mouseExited(MouseEvent e) {
+    }
+
+    public JPanel getCenterPane() {
+        return centerPane;
     }
 
 }
