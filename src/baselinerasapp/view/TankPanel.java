@@ -98,7 +98,7 @@ public class TankPanel extends JPanel {
             modelo.addColumn(columnNames[i]);
 
         }
-        modelo.addColumn(columnNames);
+        
         for (int i = 0; i < data.length; i++) {
             modelo.addRow(data[i]);
 

@@ -96,8 +96,9 @@ public class StaffPanel extends JPanel {
 
     }
 
-    private void BuildTable() {//se podria meter en un scrollpane
+    private void BuildTable() {//https://stackoverflow.com/questions/17652624/i-get-ljava-lang-object-instead-of-data-on-my-jtable
         DefaultTableModel modelo = new DefaultTableModel() {
+
             @Override
             public boolean isCellEditable(int row, int colum) {//asi consigo que las cell no sean Editables por defecto https://stackoverflow.com/questions/1990817/how-to-make-a-jtable-non-editable
                 return false;
@@ -109,13 +110,14 @@ public class StaffPanel extends JPanel {
             modelo.addColumn(columnNames[i]);
 
         }
-        modelo.addColumn(columnNames);
+
         for (int i = 0; i < data.length; i++) {
             modelo.addRow(data[i]);
 
         }
 
         staffTable = new JTable(modelo);
+
         this.add(staffTable.getTableHeader(), BorderLayout.NORTH);//esto no se si puede dar probelmas con el scroll
 
         staffTable.setFillsViewportHeight(true);//this ensures the table is never smaller than the viewport
@@ -156,7 +158,7 @@ public class StaffPanel extends JPanel {
         for (int i = 0; i < toDelete.length; i++) {
             sqlo.executeSelect("DELETE FROM PERSONAL WHERE PERSONAL.idempleado = " + data[toDelete[i]][1]);//el 1 es la posicion del array donde va el id
         }
-        
+
     }
 
 }
