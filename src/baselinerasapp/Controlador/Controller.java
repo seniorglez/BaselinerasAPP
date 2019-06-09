@@ -19,7 +19,7 @@ import java.awt.event.ActionListener;
 import baselinerasapp.Model.Users;
 import baselinerasapp.Model.Carwash;
 import baselinerasapp.Model.Workshop;
-import baselinerasapp.view.JOilLabel;
+import baselinerasapp.view.BaselinerasPanef;
 import baselinerasapp.view.OilSelectionFrame;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -27,6 +27,13 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import baselinerasapp.view.JOilLabel;
+import baselinerasapp.view.OilstationFrame;
+import baselinerasapp.view.StaffPanel;
+import baselinerasapp.view.TankPanel;
+import baselinerasapp.view.ServicesPanel;
+import java.awt.BorderLayout;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  *
@@ -50,6 +57,12 @@ public class Controller implements ActionListener, KeyListener, MouseListener {
     private Restaurant restauran;
     private Carwash carwash;
     private Workshop workshop;
+    //Paneles OilStationFrame
+    private BaselinerasPanef panelGasolinera = new BaselinerasPanef();
+    private StaffPanel panelEmpleados = new StaffPanel();
+    private TankPanel panelTanques = new TankPanel();
+    private ServicesPanel panelServicios = new ServicesPanel();
+    
     
     
     
@@ -150,10 +163,53 @@ public class Controller implements ActionListener, KeyListener, MouseListener {
     
     private void CargarOilStationFrame(int code) {
         CargarObjetosPanel(code);
-        System.out.println("Todo ok");
+        //Quitamos el panel de seleccion
+        OilSelectionFrame.getOsf().dispose();
+        //quitamos el panel predeterminado
+        BaselinerasAPP.getApp().getInternal().dispose();
+        
+        //Cargamos el contenido de los paneles del internal frame principal
+        cargarContenidoPaneles();
+        
+        //Cargamos el panel principal
+        this.app.getDp().add(OilstationFrame.getoilstationframe());
+        OilstationFrame.getoilstationframe().setVisible(true);
+        OilstationFrame.getoilstationframe().moveToFront();
+        
+        
+        JPanel centerPane = OilstationFrame.getoilstationframe().getCenterPane();
+        OilstationFrame.getoilstationframe().resetCenter();
+        centerPane.setVisible(false);
+        centerPane.add(this.panelGasolinera, BorderLayout.CENTER);
+        centerPane.setVisible(true);
         
         
         
+    }
+    
+    private void cargarContenidoPaneles() {
+        //Contenido panel Gasolinera
+        //POR ESCRIBIR//
+        
+        //Contenido panel Empleados
+        Object[][] data = new Object[this.employeers.size()][4];
+        for (int i = 0; i < this.employeers.size(); i++) {
+            data[i][0] = this.employeers.get(i).getId();
+            data[i][1] = this.employeers.get(i).getDni();
+            data[i][2] = this.employeers.get(i).getName();
+            data[i][3] = this.employeers.get(i).getSurname();
+        }
+        this.panelEmpleados.setData(data);
+        
+        //Contenido panel Tanques
+        data = new Object[this.tanks.size()][4];
+        for (int i = 0; i < this.tanks.size(); i++) {
+            data[i][0] = this.tanks.get(i).getId().getName();
+            data[i][1] = this.tanks.get(i).getCapacity();
+            data[i][2] = this.tanks.get(i).getCurrentCapacity();
+            data[i][3] = this.tanks.get(i).getPricePerLiter();
+        }
+        this.panelTanques.setData(data);
         
     }
     
@@ -193,7 +249,7 @@ public class Controller implements ActionListener, KeyListener, MouseListener {
                 cargaterminada = true;
             }else{
                 //Cargamos cada fila en el objeto y lo añadimos al array
-                this.employeers.add(new Employee(Integer.parseInt(String.valueOf(fila[0])), station, String.valueOf(fila[1]), String.valueOf(fila[2]), String.valueOf(fila[3])));
+                this.employeers.add(new Employee(Integer.parseInt(String.valueOf(fila[0])), station, String.valueOf(fila[2]), String.valueOf(fila[3]), String.valueOf(fila[4])));
             }
         }
         
@@ -294,10 +350,47 @@ public class Controller implements ActionListener, KeyListener, MouseListener {
     public void mouseClicked(MouseEvent e) {
         for (int i = 0; i < this.oilLabels.size(); i++) {
             if (e.getSource().equals(oilLabels.get(i))) {
-            System.out.println("La gasolinera de ventanas debe abrir con " + this.oilLabels.get(i).getCode());//el code es el id de la gasolinera
+            //System.out.println("La gasolinera de ventanas debe abrir con " + this.oilLabels.get(i).getCode());//el code es el id de la gasolinera
             CargarOilStationFrame(this.oilLabels.get(i).getCode());
         }
         }
+        
+        //Evento de mouse del OilStationFrame
+        JLabel l = (JLabel) e.getComponent();
+        JPanel centerPane = OilstationFrame.getoilstationframe().getCenterPane();
+        switch (l.getText()) {
+            case "OilStation":
+                OilstationFrame.getoilstationframe().resetCenter();
+                centerPane.setVisible(false);
+                centerPane.add(this.panelGasolinera, BorderLayout.CENTER);
+                centerPane.setVisible(true);
+                break;
+            case "Staff":
+                OilstationFrame.getoilstationframe().resetCenter();
+                centerPane.setVisible(false);
+                centerPane.add(this.panelEmpleados, BorderLayout.CENTER);
+                centerPane.setVisible(true);
+                break;
+            case "Tanks":
+                OilstationFrame.getoilstationframe().resetCenter();
+                centerPane.setVisible(false);
+                centerPane.add(this.panelTanques, BorderLayout.CENTER);
+                centerPane.setVisible(true);
+
+                break;
+           case "Services":
+                OilstationFrame.getoilstationframe().resetCenter();
+                centerPane.setVisible(false);
+                centerPane.add(this.panelServicios, BorderLayout.CENTER);
+                centerPane.setVisible(true);
+                break;
+            case "Location":
+               break;
+            default:
+                System.err.println("somethink go wrong");
+
+        }
+        
        
     }
 

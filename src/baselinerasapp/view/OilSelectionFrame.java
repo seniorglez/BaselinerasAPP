@@ -41,7 +41,7 @@ public class OilSelectionFrame extends JInternalFrame {
     private ArrayList<JOilLabel> oilLabels = new ArrayList<JOilLabel>();
 
     ///Constructores///
-    public OilSelectionFrame() {
+    private OilSelectionFrame() {
         initComponents();
     }
 
