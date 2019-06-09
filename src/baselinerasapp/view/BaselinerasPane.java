@@ -21,20 +21,20 @@ import javax.swing.JTextField;
 public class BaselinerasPane extends JPanel {
 
     private JButton button1, button2, button3;
-    private JLabel html;
+    private JLabel html = new JLabel();
     private OilStation o;
 
-    public BaselinerasPane() {
-        pruebita();
+    public BaselinerasPane(JLabel html) {
+        this.html = html;
         initComponents();
     }
 
     private void initComponents() {
-
+        
         this.setLayout(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
-        html = new JLabel();
-        buildHtml();
+        //html = new JLabel();
+        //buildHtml();
 
         constraints.gridx = 0;
         constraints.gridy = 0;
@@ -73,10 +73,12 @@ public class BaselinerasPane extends JPanel {
         this.add(button2, constraints);
     }
 
+    @Deprecated
     private void pruebita() {
-        this.o = new OilStation(1, null, null, "APS", "La Reina del Desierto", 213);
+        this.o = new OilStation(1, null, null, null, "La Reina del Desierto", 213);
     }
 
+    @Deprecated
     private void buildHtml() {
         html.setText("<html>"
                 + "<h1>Data about the <br>oilstation</h1>"
@@ -89,4 +91,13 @@ public class BaselinerasPane extends JPanel {
         html.setHorizontalAlignment(JLabel.CENTER);
     }
 
+    public void setText (JLabel html){
+        this.html = html;
+        this.setVisible(false);
+        this.removeAll();
+        initComponents();
+        this.repaint();
+        this.setVisible(true);
+        
+    }
 }

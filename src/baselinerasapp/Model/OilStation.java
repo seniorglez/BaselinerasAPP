@@ -15,11 +15,12 @@ public class OilStation {
 
     private int id, kilometers;
     private Company con;
-    private String nomenclature, name;
+    private String name;
+    private Road nomenclature;
     private Employee chief;
 
 
-    public OilStation(int id, Company con, Employee chief, String nomenclature, String name, int kilometers) {//revisar el id empleado
+    public OilStation(int id, Company con, Employee chief, Road nomenclature, String name, int kilometers) {//revisar el id empleado
 
         this.id = id;
         this.con = con;
@@ -46,11 +47,11 @@ public class OilStation {
         this.con = con;
     }
 
-    public String getNomenclature() {
+    public Road getNomenclature() {
         return nomenclature;
     }
 
-    public void setNomenclature(String nomenclature) {
+    public void setNomenclature(Road nomenclature) {
         this.nomenclature = nomenclature;
     }
 
