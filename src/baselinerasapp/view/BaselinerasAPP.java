@@ -196,6 +196,9 @@ public class BaselinerasAPP extends JFrame implements ActionListener{
     public JDesktopPane getDp() {
         return dp;
     }
-    
+
+    public JInternalFrame getInternal() {
+        return internal;
+    }
     
 }

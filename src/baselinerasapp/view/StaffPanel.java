@@ -22,7 +22,7 @@ public class StaffPanel extends JPanel {
 //si quisieramos exigir restricciones deberiamos usar un TableModel, molaria mas otro frame y cambiar editable a null
     //ejemplo de tabla para ver como queda https://docs.oracle.com/javase/tutorial/uiswing/components/table.html  la llenas como veas señor controlador
 
-    private String[] columnNames = {"First Name", "Last Name", "Sport", "# of Years", "Vegetarian"};
+    private String[] columnNames = {"ID_Empleado", "DNI", "Nombre Empleado", "Apellidos Empleado"};
     private Object[][] data = {
         {"Kathy", "Smith",
             "Snowboarding", new Integer(5), new Boolean(false)},
@@ -98,16 +98,19 @@ public class StaffPanel extends JPanel {
             modelo.addColumn(columnNames[i]);
 
         }
-        modelo.addColumn(columnNames);
+        
         for (int i = 0; i < data.length; i++) {
             modelo.addRow(data[i]);
-
         }
-
+        
+        
         staffTable = new JTable(modelo);
-        this.add(staffTable.getTableHeader(), BorderLayout.NORTH);//esto no se si puede dar probelmas con el scroll
 
+
+        this.add(staffTable.getTableHeader(), BorderLayout.NORTH);//esto no se si puede dar probelmas con el scroll
+        
         staffTable.setFillsViewportHeight(true);//this ensures the table is never smaller than the viewport
+        
         scrollPane = new JScrollPane(staffTable);
         this.add(scrollPane, BorderLayout.CENTER);
 
@@ -122,4 +125,11 @@ public class StaffPanel extends JPanel {
         headerPanel.add(Box.createHorizontalGlue());
         this.add(headerPanel, BorderLayout.PAGE_START);
     }
+
+    public void setData(Object[][] data) {
+        this.data = data;
+        BuildTable();
+    }
+    
+    
 }
