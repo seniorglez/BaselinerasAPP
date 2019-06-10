@@ -138,7 +138,11 @@ public class Controller implements ActionListener, KeyListener, MouseListener {
 
     //Cargar OilSelectionFrame y su lista
     private void CargarOilSelecctionFrame() {
-        this.app.getDp().add(OilSelectionFrame.getOsf());
+        if (OilSelectionFrame.getOsf().isVisible() == false) {
+            OilSelectionFrame.getOsf().setVisible(true);
+        }else{
+            this.app.getDp().add(OilSelectionFrame.getOsf());
+        }
         OilSelectionFrame.getOsf().moveToFront();
 
         CargarJOilLabel();
@@ -171,7 +175,7 @@ public class Controller implements ActionListener, KeyListener, MouseListener {
     private void CargarOilStationFrame(int code) {
         CargarObjetosPanel(code);
         //Quitamos el panel de seleccion
-        OilSelectionFrame.getOsf().dispose();
+        OilSelectionFrame.getOsf().setVisible(false);
         //quitamos el panel predeterminado
         BaselinerasAPP.getApp().getInternal().dispose();
 
@@ -179,7 +183,12 @@ public class Controller implements ActionListener, KeyListener, MouseListener {
         cargarContenidoPaneles();
 
         //Cargamos el panel principal
-        this.app.getDp().add(OilstationFrame.getoilstationframe());
+        if (OilstationFrame.getoilstationframe().isVisible() == false) {
+            OilstationFrame.getoilstationframe().setVisible(true);
+        }else{
+            this.app.getDp().add(OilstationFrame.getoilstationframe());
+        }
+        
         OilstationFrame.getoilstationframe().setVisible(true);
         OilstationFrame.getoilstationframe().moveToFront();
 
@@ -227,6 +236,7 @@ public class Controller implements ActionListener, KeyListener, MouseListener {
         this.panelTanques.setData(data);
 
         //Contenido panel Servicios
+        this.panelServicios.getCombo().removeAllItems();
         CargarContenidoComboServicios();
         this.panelServicios.getCombo().setActionCommand("SelectorServicio");
         this.panelServicios.getCombo().addActionListener(this);
@@ -241,19 +251,19 @@ public class Controller implements ActionListener, KeyListener, MouseListener {
 
         //Codigo//
         //Comunidad Autonoma
-        sql = "SELECT IDCOMUNIDAD, NOMBRECOMUNIDAD FROM COMUNIDAD_AUTONOMA WHERE IDCOMUNIDAD IN (SELECT IDCOMUNIDAD FROM CARRETERA WHERE NOMENCLATURA LIKE (SELECT NOMENCLATURA FROM EMPRESA WHERE ID_EMPRESA LIKE '" + code + "'))";
+        sql = "SELECT IDCOMUNIDAD, NOMBRECOMUNIDAD FROM COMUNIDAD_AUTONOMA WHERE IDCOMUNIDAD IN (SELECT IDCOMUNIDAD FROM CARRETERA WHERE NOMENCLATURA LIKE (SELECT NOMENCLATURA FROM GASOLINERA WHERE IDGASOLINERA LIKE '" + code + "'))";
         this.sqlo.executeSelect(sql);
         fila = this.sqlo.getRow();
         this.ca = new ComunidadAutonoma(Integer.parseInt(String.valueOf(fila[0])), String.valueOf(fila[1]));
 
         //Carretera
-        sql = "SELECT NOMENCLATURA, IDCOMUNIDAD, KILOMETROS FROM CARRETERA WHERE NOMENCLATURA LIKE  (SELECT NOMENCLATURA FROM EMPRESA WHERE ID_EMPRESA LIKE '" + code + "')";
+        sql = "SELECT NOMENCLATURA, IDCOMUNIDAD, KILOMETROS FROM CARRETERA WHERE NOMENCLATURA LIKE  (SELECT NOMENCLATURA FROM GASOLINERA WHERE IDGASOLINERA LIKE '" + code + "')";
         this.sqlo.executeSelect(sql);
         fila = this.sqlo.getRow();
         this.carretera = new Road(String.valueOf(fila[0]), Integer.parseInt(String.valueOf(fila[2])), ca);
 
         //Compañia
-        sql = "SELECT ID_EMPRESA, UBICACION, NOMBREEMPRESA, NIFEMPRESA FROM EMPRESA WHERE ID_EMPRESA LIKE '" + code + "'";
+        sql = "SELECT ID_EMPRESA, UBICACION, NOMBREEMPRESA, NIFEMPRESA FROM EMPRESA WHERE ID_EMPRESA LIKE (SELECT ID_EMPRESA FROM GASOLINERA WHERE IDGASOLINERA LIKE '" + code + "')";
         this.sqlo.executeSelect(sql);
         fila = this.sqlo.getRow();
         this.company = new Company(code, String.valueOf(fila[1]), String.valueOf(fila[2]), String.valueOf(fila[3]));
@@ -273,12 +283,14 @@ public class Controller implements ActionListener, KeyListener, MouseListener {
         //Empleados
         sql = "SELECT IDEMPLEADO, IDGASOLINERA, DNI, NOMBREEMPLEADO, APELLIDOSEMPLEADO FROM PERSONAL WHERE IDGASOLINERA LIKE '" + code + "'";
         this.sqlo.executeSelect(sql);
+        this.employeers = new ArrayList<>();
 
         while (!cargaterminada) {
             fila = this.sqlo.getRow();
             if (fila == null) {
                 cargaterminada = true;
             } else {
+                System.out.println(String.valueOf(fila[3]));
                 //Cargamos cada fila en el objeto y lo añadimos al array
                 this.employeers.add(new Employee(Integer.parseInt(String.valueOf(fila[0])), station, String.valueOf(fila[2]), String.valueOf(fila[3]), String.valueOf(fila[4])));
             }
@@ -303,6 +315,7 @@ public class Controller implements ActionListener, KeyListener, MouseListener {
         sql = "SELECT IDGASOLINERA, IDCOMBUSTIBLE, CAPACIDAD, CANTIDADACTUAL, PRECIOLITRO FROM TANQUE WHERE IDGASOLINERA LIKE '" + code + "'";
         this.sqlo.executeSelect(sql);
         cargaterminada = false;
+        this.tanks = new ArrayList<>();
 
         while (!cargaterminada) {
             fila = this.sqlo.getRow();
@@ -396,11 +409,10 @@ public class Controller implements ActionListener, KeyListener, MouseListener {
             this.app.getMenuItem().addActionListener(this);
         }
         if (ae.getActionCommand() == "login") {
-            if (this.app.getLog() == null) {
                 this.app.setLog(new LoggingFrame(this.app));//es necesario poder volver a poner log a null cuando cierras el principal
                 this.app.getLog().setLocationRelativeTo(null);
 
-            }
+            
         }
 
     }
@@ -461,8 +473,6 @@ public class Controller implements ActionListener, KeyListener, MouseListener {
                 centerPane.setVisible(false);
                 centerPane.add(this.panelServicios, BorderLayout.CENTER);
                 centerPane.setVisible(true);
-                break;
-            case "Location":
                 break;
             default:
                 System.err.println("somethink go wrong");

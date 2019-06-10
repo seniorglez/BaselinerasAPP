@@ -3,6 +3,7 @@ package baselinerasapp.view;
 import baselinerasapp.Model.SQLOperations;
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.util.Arrays;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -26,62 +27,7 @@ public class StaffPanel extends JPanel {
     //ejemplo de tabla para ver como queda https://docs.oracle.com/javase/tutorial/uiswing/components/table.html  la llenas como veas señor controlador
 
     private String[] columnNames = {"ID_Empleado", "DNI", "Nombre Empleado", "Apellidos Empleado"};
-    private Object[][] data = {
-        {"Kathy", "Smith",
-            "Snowboarding", new Integer(5), new Boolean(false)},
-        {"John", "Doe",
-            "Rowing", new Integer(3), new Boolean(true)},
-        {"Sue", "Black",
-            "Knitting", new Integer(2), new Boolean(false)},
-        {"Jane", "White",
-            "Speed reading", new Integer(20), new Boolean(true)},
-        {"Joe", "Brown",
-            "Pool", new Integer(10), new Boolean(false)},
-        {"Joe", "Brown",
-            "Pool", new Integer(10), new Boolean(false)},
-        {"Joe", "Brown",
-            "Pool", new Integer(10), new Boolean(false)},
-        {"Joe", "Brown",
-            "Pool", new Integer(10), new Boolean(false)},
-        {"Joe", "Brown",
-            "Pool", new Integer(10), new Boolean(false)},
-        {"Joe", "Brown",
-            "Pool", new Integer(10), new Boolean(false)},
-        {"Joe", "Brown",
-            "Pool", new Integer(10), new Boolean(false)},
-        {"Joe", "Brown",
-            "Pool", new Integer(10), new Boolean(false)},
-        {"Joe", "Brown",
-            "Pool", new Integer(10), new Boolean(false)},
-        {"Joe", "Brown",
-            "Pool", new Integer(10), new Boolean(false)},
-        {"Joe", "Brown",
-            "Pool", new Integer(10), new Boolean(false)},
-        {"Joe", "Brown",
-            "Pool", new Integer(10), new Boolean(false)},
-        {"Joe", "Brown",
-            "Pool", new Integer(10), new Boolean(false)},
-        {"Joe", "Brown",
-            "Pool", new Integer(10), new Boolean(false)},
-        {"Joe", "Brown",
-            "Pool", new Integer(10), new Boolean(false)},
-        {"Joe", "Brown",
-            "Pool", new Integer(10), new Boolean(false)},
-        {"Joe", "Brown",
-            "Pool", new Integer(10), new Boolean(false)},
-        {"Joe", "Brown",
-            "Pool", new Integer(10), new Boolean(false)},
-        {"Joe", "Brown",
-            "Pool", new Integer(10), new Boolean(false)},
-        {"Joe", "Brown",
-            "Pool", new Integer(10), new Boolean(false)},
-        {"Joe", "Brown",
-            "Pool", new Integer(10), new Boolean(false)},
-        {"Joe", "Brown",
-            "Pool", new Integer(10), new Boolean(false)},
-        {"Joe", "Brown",
-            "Pool", new Integer(10), new Boolean(false)}
-    };
+    private Object[][] data;
     private JTable staffTable;
     private JScrollPane scrollPane;
     private JPanel headerPanel, footerPanel;
@@ -89,15 +35,24 @@ public class StaffPanel extends JPanel {
     private JButton add, delete;
 
     public StaffPanel() {
+        //initComponents();
+
+    }
+    
+    private void initComponents(){
+        this.setVisible(false);
+        this.removeAll();
         this.setLayout(new BorderLayout());
-        BuildTable();
+        buildTable();
         BuildHeader();
         //No esta imprementado
         //BuildFoot();
-
+        
+        this.repaint();
+        this.setVisible(true);
     }
 
-    private void BuildTable() {//https://stackoverflow.com/questions/17652624/i-get-ljava-lang-object-instead-of-data-on-my-jtable
+    private void buildTable() {//https://stackoverflow.com/questions/17652624/i-get-ljava-lang-object-instead-of-data-on-my-jtable
         DefaultTableModel modelo = new DefaultTableModel() {
 
             @Override
@@ -111,7 +66,7 @@ public class StaffPanel extends JPanel {
             modelo.addColumn(columnNames[i]);
 
         }
-      
+        
         for (int i = 0; i < data.length; i++) {
             modelo.addRow(data[i]);
         }
@@ -126,6 +81,9 @@ public class StaffPanel extends JPanel {
         
         scrollPane = new JScrollPane(staffTable);
         this.add(scrollPane, BorderLayout.CENTER);
+        this.setVisible(false);
+        this.updateUI();
+        this.setVisible(true);
 
     }
 
@@ -168,7 +126,7 @@ public class StaffPanel extends JPanel {
 
     public void setData(Object[][] data) {
         this.data = data;
-        BuildTable();
+        initComponents();
     }
     
     

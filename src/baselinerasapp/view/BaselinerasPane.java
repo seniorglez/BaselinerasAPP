@@ -73,23 +73,6 @@ public class BaselinerasPane extends JPanel {
 //        this.add(button2, constraints);
     }
 
-    @Deprecated
-    private void pruebita() {
-        this.o = new OilStation(1, null, null, null, "La Reina del Desierto", 213);
-    }
-
-    @Deprecated
-    private void buildHtml() {
-        html.setText("<html>"
-                + "<h1>Data about the <br>oilstation</h1>"
-                + "<table border=\"1\" cellpadding=\"0\" cellspacing=\"0\" >"
-                + "<tr><td>NOMBRE</td><td>" + o.getName() + "</td></tr>"
-                + "<tr><td>CARRETERA</td><td>" + o.getNomenclature() + "</td></tr>"
-                + "<tr><td>KILOMETRO</td><td>" + o.getKilometers() + "</td></tr>"
-                + "</table>"
-                + "</html>");
-        html.setHorizontalAlignment(JLabel.CENTER);
-    }
 
     public void setText (JLabel html){
         this.html = html;

@@ -86,11 +86,24 @@ public class TankPanel extends JPanel {
 
     public TankPanel() {
         this.setLayout(new BorderLayout());
-        BuildTable();
+        buildTable();
         BuildHeader();
     }
+    
+    private void initComponents(){
+        this.setVisible(false);
+        this.removeAll();
+        this.setLayout(new BorderLayout());
+        buildTable();
+        BuildHeader();
+        //No esta imprementado
+        //BuildFoot();
+        
+        this.repaint();
+        this.setVisible(true);
+    }
 
-    private void BuildTable() {//se podria meter en un scrollpane
+    private void buildTable() {//se podria meter en un scrollpane
         DefaultTableModel modelo = new DefaultTableModel();
 
         for (int i = 0; i < columnNames.length; i++) {//añadimos las columnas
@@ -126,7 +139,7 @@ public class TankPanel extends JPanel {
     
     public void setData(Object[][] data) {
         this.data = data;
-        BuildTable();
+        initComponents();
     }
     
 }
