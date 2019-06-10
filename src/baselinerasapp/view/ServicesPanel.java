@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import baselinerasapp.Model.Restaurant;
 import baselinerasapp.Model.Workshop;
 import baselinerasapp.Model.Carwash;
+import java.awt.Font;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -31,11 +32,13 @@ public class ServicesPanel extends JPanel {
     private String[] comboStrings;
     private JComboBox combo;
     private GridBagConstraints c;
-    private JLabel name,nif,tables,capacity;
+    private JLabel name, nif, tables, capacity;
     private Restaurant rest;
     private Workshop work;
     private Carwash carw;
-
+    private Font font = new Font("Verdana", Font.BOLD, 16);
+    private Color color=Color.WHITE;
+    
     public ServicesPanel() {
         this.setLayout(new BorderLayout());
         pruebita();//soy un metodo de prueba, si no te das cuentas tu solo es que eres gilip... Y borralo, no lo depreques
@@ -44,9 +47,9 @@ public class ServicesPanel extends JPanel {
         BuildHeader();
         BuildDefault();
         BuildRestaurant();
-       
+        
     }
-
+    
     private void BuildHeader() {
         headerPanel = new JPanel();
         headerPanel.setLayout(new BoxLayout(headerPanel, BoxLayout.Y_AXIS));
@@ -58,159 +61,169 @@ public class ServicesPanel extends JPanel {
         this.add(headerPanel, BorderLayout.PAGE_START);
         
     }
-
+    
     private void BuildDefault() {
         centerPane = new JPanel(new GridBagLayout());
         centerPane.setBackground(new Color(68, 28, 68));
         this.add(centerPane, BorderLayout.CENTER);
-
+        
     }
-
+    
     private void BuildCombo() {
         int i = 1;//esto debe depender de si hay servicios o no(controlador)
 
         comboStrings = new String[i];
         comboStrings[0] = "";
         combo = new JComboBox(comboStrings);
-
+        
         combo.setSelectedIndex(0);
         combo.addActionListener(null);//tiene que llamar a los metodos de escritura cuando cambie 
         
-
     }
-
+    
     private void BuildRestaurant() {
         centerPane.setVisible(false);
         centerPane.removeAll();
         centerPane.setVisible(true);
-        
+
         //position1
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
         c.gridy = 0;
-       name= new JLabel("Name: " + this.rest.getName()); 
-       centerPane.add(name,c);
+        name = new JLabel("Name: " + this.rest.getName());        
+        name.setFont(font);
+        name.setForeground(color);
+        centerPane.add(name, c);
        
-      //position2
+        //position2
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
         c.gridy = -1;
-       nif= new JLabel("NIF: " + this.rest.getNif());
-       centerPane.add(nif,c);
-       
-       //position3
+        nif = new JLabel("NIF: " + this.rest.getNif());
+        nif.setFont(font);
+        nif.setForeground(color);
+        centerPane.add(nif, c);
+
+        //position3
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.gridx = 1;
-        c.gridy = 0;
-       tables= new JLabel("Tables: " + this.rest.getTables()); 
-       centerPane.add(tables,c);
-       
-       
-       //position4
+        c.gridx = 0;
+        c.gridy = -2;
+        tables = new JLabel("Tables: " + this.rest.getTables());        
+        tables.setFont(font);
+        tables.setForeground(color);
+        centerPane.add(tables, c);
+
+        //position4
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.gridx = 1;
-        c.gridy = -1;
-        capacity= new JLabel("Max Capacity: " + this.rest.getCapacity()); 
-        centerPane.add(capacity,c);
-       
+        c.gridx = 0;
+        c.gridy = -3;
+        capacity = new JLabel("Max Capacity: " + this.rest.getCapacity());        
+        capacity.setFont(font);
+        capacity.setForeground(color);
+        centerPane.add(capacity, c);
         
-       
-      
-       
-               
-
     }
-
+    
     private void BuildCarwash() {
-centerPane.setVisible(false);
+        centerPane.setVisible(false);
         centerPane.removeAll();
         centerPane.setVisible(true);
-        
+
         //position1
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
         c.gridy = 0;
-       name= new JLabel("Name: " + this.carw.getName()); 
-       centerPane.add(name,c);
-       
-      //position2
+        name = new JLabel("Name: " + this.carw.getName());   
+        name.setFont(font);
+        name.setForeground(color);
+        centerPane.add(name, c);
+
+        //position2
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
         c.gridy = -1;
-       nif= new JLabel("NIF: " + this.carw.getNif());
-       centerPane.add(nif,c);
-       
-       //position3
+        nif = new JLabel("NIF: " + this.carw.getNif());
+        nif.setFont(font);
+        nif.setForeground(color);
+        centerPane.add(nif, c);
+
+        //position3
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 1;
         c.gridy = 0;
-       tables= new JLabel("Tunnels: " + this.carw.getTunnels()); 
-       centerPane.add(tables,c);
-       
-       
-       //position4
+        tables = new JLabel("Tunnels: " + this.carw.getTunnels());      
+        tables.setFont(font);
+        tables.setForeground(color);
+        centerPane.add(tables, c);
+
+        //position4
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 1;
         c.gridy = -1;
-        capacity= new JLabel("Hosepipes: " + this.carw.getHosepipes()); 
-        centerPane.add(capacity,c);
-       
+        capacity = new JLabel("Hosepipes: " + this.carw.getHosepipes());  
+        capacity.setFont(font);
+        capacity.setForeground(color);
+        centerPane.add(capacity, c);
+        
     }
-
+    
     private void BuildWorkshop() {
-centerPane.setVisible(false);
+        centerPane.setVisible(false);
         centerPane.removeAll();
         centerPane.setVisible(true);
-        
+
         //position1
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
         c.gridy = 0;
-       name= new JLabel("Name: " + this.work.getName()); 
-       centerPane.add(name,c);
-       
-      //position2
+        name = new JLabel("Name: " + this.work.getName());  
+        name.setFont(font);
+        name.setForeground(color);
+        centerPane.add(name, c);
+
+        //position2
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
         c.gridy = -1;
-       nif= new JLabel("NIF: " + this.work.getNif());
-       centerPane.add(nif,c);
-       
-       //position3
+        nif = new JLabel("NIF: " + this.work.getNif());
+        nif.setFont(font);
+        nif.setForeground(color);
+        centerPane.add(nif, c);
+
+        //position3
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 1;
         c.gridy = 0;
-       capacity= new JLabel("Capacity: " + this.work.getCapacity()); 
-       centerPane.add(capacity,c);
-       
-       
-       
+        capacity = new JLabel("Capacity: " + this.work.getCapacity()); 
+        capacity.setFont(font);
+        capacity.setForeground(color);
+        centerPane.add(capacity, c);
+        
     }
-
+    
     private void pruebita() {
-        rest=new Restaurant(WIDTH, null, "nombre", "ajda0oijd", 3, 10);
+        rest = new Restaurant(WIDTH, null, "nombre", "ajda0oijd", 3, 10);
         //carw=new Carwash(1, 123132, 3,3, "NOMBRE", null);
         //work=new Workshop(1, null, 1, 1);
     }
-
+    
     public JComboBox getCombo() {
         return combo;
     }
     
-    public void setRestaurant(Restaurant servicio){
+    public void setRestaurant(Restaurant servicio) {
         this.rest = servicio;
         BuildRestaurant();
     }
     
-    public void setCarWash(Carwash servicio){
+    public void setCarWash(Carwash servicio) {
         this.carw = servicio;
         BuildCarwash();
     }
     
-    public void setWorkshop(Workshop servicio){
+    public void setWorkshop(Workshop servicio) {
         this.work = servicio;
         BuildWorkshop();
     }
-    
     
 }
