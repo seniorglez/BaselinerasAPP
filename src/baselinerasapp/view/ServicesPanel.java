@@ -41,12 +41,11 @@ public class ServicesPanel extends JPanel {
     
     public ServicesPanel() {
         this.setLayout(new BorderLayout());
-        pruebita();//soy un metodo de prueba, si no te das cuentas tu solo es que eres gilip... Y borralo, no lo depreques
         c = new GridBagConstraints();
         BuildCombo();
         BuildHeader();
         BuildDefault();
-        BuildRestaurant();
+        //BuildRestaurant();
         
     }
     
@@ -210,11 +209,6 @@ public class ServicesPanel extends JPanel {
         
     }
     
-    private void pruebita() {
-        rest = new Restaurant(WIDTH, null, "nombre", "ajda0oijd", 3, 10);
-        //carw=new Carwash(1, 123132, 3,3, "NOMBRE", null);
-        //work=new Workshop(1, null, 1, 1);
-    }
     
     public JComboBox getCombo() {
         return combo;
