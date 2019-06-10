@@ -16,16 +16,16 @@ import java.util.logging.Logger;
  */
 public class Connection {
     ///Atributos///
-    private String url = "";
-    private String user = "";
-    private String password = "";
+    private String url = "jdbc:oracle:thin:@sveddie.hundirlaweb.es:1521:xe";
+    private String user = "GESTOR_GASOLINERAS";
+    private String password = "Passw0rd";
     java.sql.Connection c;
     private static Connection myConnection;
     
     ///Constructores///
     private Connection(){
         try {
-            c=DriverManager.getConnection("jdbc:oracle:thin:@sveddie.hundirlaweb.es:1521:xe", "GESTOR_GASOLINERAS", "Passw0rd");
+            c=DriverManager.getConnection(this.url, this.user, this.password);
         } catch (SQLException ex) {
             System.out.println("Error en la conexion con la base de datos");
         }

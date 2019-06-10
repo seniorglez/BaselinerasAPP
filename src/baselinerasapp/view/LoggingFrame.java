@@ -45,7 +45,7 @@ public class LoggingFrame extends JFrame{
     private void initComponents() {
         this.setSize(new Dimension(800, 600));
         this.setTitle("Logging");
-        this.setVisible(true);
+        
 
         panBox = new JPanel();
         panBox.setLayout(new BoxLayout(panBox, BoxLayout.Y_AXIS));
@@ -74,6 +74,7 @@ public class LoggingFrame extends JFrame{
         this.setResizable(false);
         this.pack();
 
+        this.setVisible(true);
     }
 
     public void construyePanelSuperior() {

@@ -160,6 +160,8 @@ public class OilSelectionFrame extends JInternalFrame {
     public void setOilLabels(ArrayList<JOilLabel> oilLabels) {
         this.oilLabels = oilLabels;
         
+        //Eliminamos los labels anteriores
+        panlabel.removeAll();
         //Establecemos los labels a la lista tras cargarlos
         for (int x = 0; x < this.oilLabels.size(); x++) {
                 panlabel.add(oilLabels.get(x));

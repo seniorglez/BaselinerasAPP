@@ -6,6 +6,7 @@
 package baselinerasapp.view;
 
 
+import baselinerasapp.Controlador.Controller;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -44,7 +45,7 @@ public class BaselinerasAPP extends JFrame implements ActionListener{
     private JMenuBar menuBar;
     private JMenu menu;
     private JMenuItem menuItem;
-    private LoggingFrame log=null;
+    private LoggingFrame log;
    //conexion
     private String user;
     private String pwd;
@@ -113,6 +114,7 @@ public class BaselinerasAPP extends JFrame implements ActionListener{
         menuItem.getAccessibleContext().setAccessibleDescription(
                 "This doesn't really do anything");
         
+        menuItem.setActionCommand("login");
         menuItem.addActionListener(this);
         menu.add(menuItem);
         
@@ -216,6 +218,9 @@ public class BaselinerasAPP extends JFrame implements ActionListener{
     }
 
     public LoggingFrame getLog() {
+        if (log == null) {
+            return null;
+        }
         return log;
     }
 
