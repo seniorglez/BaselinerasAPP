@@ -84,7 +84,7 @@ public class ServicesPanel extends JPanel {
     private void BuildRestaurant() {
         centerPane.setVisible(false);
         centerPane.removeAll();
-        centerPane.setVisible(true);
+        
 
         //position1
         c.fill = GridBagConstraints.HORIZONTAL;
@@ -122,12 +122,15 @@ public class ServicesPanel extends JPanel {
         capacity.setForeground(color);
         centerPane.add(capacity, c);
         
+        this.repaint();
+        centerPane.setVisible(true);
+        
     }
     
     private void BuildCarwash() {
         centerPane.setVisible(false);
         centerPane.removeAll();
-        centerPane.setVisible(true);
+        
 
         //position1
         c.fill = GridBagConstraints.HORIZONTAL;
@@ -165,12 +168,15 @@ public class ServicesPanel extends JPanel {
         capacity.setForeground(color);
         centerPane.add(capacity, c);
         
+        this.repaint();
+        centerPane.setVisible(true);
+        
     }
     
     private void BuildWorkshop() {
         centerPane.setVisible(false);
         centerPane.removeAll();
-        centerPane.setVisible(true);
+        
 
         //position1
         c.fill = GridBagConstraints.HORIZONTAL;
@@ -198,6 +204,9 @@ public class ServicesPanel extends JPanel {
         capacity.setFont(font);
         capacity.setForeground(color);
         centerPane.add(capacity, c);
+        
+        this.repaint();
+        centerPane.setVisible(true);
         
     }
     
